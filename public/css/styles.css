@@ -1,0 +1,40 @@
+/* public/css/styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f5f8;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+aside {
+    background-color: #3498db;
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 15px;
+}
+
+aside a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Adicione mais estilos conforme necessário */
