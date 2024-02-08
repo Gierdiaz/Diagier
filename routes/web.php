@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 // Public Routes
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//TODO: verificar depois
+Route::get('/forgot-password', 'App\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+
+
 // Rotas de Autenticação
 Route::prefix('auth')->group(function () {
     Route::get('/register', [AuthController::class, 'RegistrationForm'])->name('register.form');
@@ -32,7 +36,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     // Profiles Routes
-    Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles');
+    Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -51,7 +55,7 @@ Route::prefix('auth')->group(function () {
     Route::delete('/developers/{developer}', [DeveloperController::class, 'destroy'])->name('developers.destroy');
 
     // Projects Routes
-    Route::get('/developers/{developer}/projects', [DeveloperController::class, 'projects'])->name('developers.projects');
+    Route::get('/developers/{developer}/projects', [ProjectController::class, 'projects'])->name('developers.projects');
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');

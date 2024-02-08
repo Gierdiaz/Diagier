@@ -49,6 +49,6 @@ class AuthController extends Controller
         //     return redirect()->route('profiles');
         // }
 
-        return redirect()->route('profiles');
+        return redirect()->route('dashboard');
     }
 }
