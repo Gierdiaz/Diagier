@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -39,16 +39,18 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required', 'emal',
+            'email' => 'required', 'email',
             'password' => 'required',
         ]);
 
-        User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $request->input('email'))->first();
 
-        // if (Auth::attempt($request)) {
-        //     return redirect()->route('profiles');
-        // }
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
 
-        return redirect()->route('dashboard');
+            return redirect()->route('layout', ['user' => $user]);
+        }
+
+        return redirect()->back()->withInput()->withErrors(['email' => 'Credenciais inválidas']);
     }
 }

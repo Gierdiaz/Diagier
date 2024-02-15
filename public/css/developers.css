@@ -1,0 +1,77 @@
+
+.developer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.developer-details {
+    flex: 1;
+}
+
+.developer-actions {
+    display: flex;
+    align-items: center;
+}
+
+.developer-actions form,
+.developer-actions a {
+    margin-left: 10px;
+}
+
+/* Styles for buttons */
+.button {
+    background-color: #4CAF50; /* Green background color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button-new {
+    background-color: #4c53af; /* Green background color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button-delete {
+    background-color: #f44336; /* Red background color */
+}
+
+/* Styles for breadcrumbs */
+.breadcrumb {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.breadcrumb a:not(:last-child):after {
+    content: '>';
+    margin: 0 5px;
+}
+
+.breadcrumb span {
+    color: #666;
+}

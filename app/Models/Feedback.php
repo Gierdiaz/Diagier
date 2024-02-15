@@ -11,6 +11,8 @@ class Feedback extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table = 'feedbacks';
+
     protected $fillable = [
         'id',
         'comment',
@@ -20,6 +22,11 @@ class Feedback extends Model
         'feedback',
         'task_id',
     ];
+
+    public function manager(): BelongsTo
+    {
+        return $this->belongsTo(Manager::class);
+    }
 
     public function task(): BelongsTo
     {

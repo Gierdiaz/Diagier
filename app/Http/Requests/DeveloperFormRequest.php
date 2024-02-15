@@ -16,28 +16,24 @@ class DeveloperFormRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:developers,email,'],
-            'github' => ['required', 'string', 'unique:developers,github,'],
-            'bio' => ['nullable', 'string'],
-            'technologies' => ['required', 'string'],
-            'colleg' => ['required', 'string'],
-            'course' => ['required', 'string'],
-            'certifications' => ['nullable', 'string'],
-            'company' => ['required', 'string'],
-            'level' => ['required', 'in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant'],
-            'city' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'country' => ['required', 'string'],
-            'work_mode' => ['required', 'in:home_office,presential,hybrid'],
-            'user_id' => ['required', 'exists:users,id'],
+            'name' => 'required|string',
+            'email' => 'required|email|unique:developers,email',
+            'github' => 'required|string|unique:developers,github',
+            'bio' => 'nullable|string',
+            'technologies' => 'required|string',
+            'college' => 'required|string',
+            'course' => 'required|string',
+            'certifications' => 'nullable|string',
+            'company' => 'required|string',
+            'level' => 'required|in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'work_mode' => 'required|in:home_office,presential,hybrid',
         ];
-
     }
 }

@@ -10,6 +10,6 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
 
-        return $tasks;
+        return view('pages.tasks.index', compact('tasks'));
     }
 }

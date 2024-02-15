@@ -2,21 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectFormRequest;
+use App\Models\Developer;
 use App\Models\Project;
+use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-       $projects = Project::all();
-     
+        $projects = Project::orderBy('id', 'desc')->paginate(5);
+
         return view('pages.projects.index', compact('projects'));
     }
 
-    public function tasks(Project $projects)
+    public function show()
     {
-        $tasks = $projects->tasks;
+    }
 
-        return view('projects.tasks');
+    public function create(): View
+    {
+        $developers = Developer::all();
+
+        return view('pages.projects.create', compact('developers'));
+    }
+
+    public function store(ProjectFormRequest $request)
+    {
+        $project = $request->validated();
+        $project['developer_id'];
+        Project::create($project);
+
+        return redirect()->route('projects.index');
+    }
+
+    public function edit()
+    {
+    }
+
+    public function update()
+    {
+    }
+
+    public function destroy(Project $project)
+    {
+        $this->authorize('delete', $project);
+        
+        $project->delete();
+
+        return redirect()->route('projects.index');
     }
 }

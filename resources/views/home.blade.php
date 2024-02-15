@@ -72,7 +72,7 @@
 <body>
     <div id="particles-js"></div>
     <div class="btn-container"> <!-- Nova div para conter os botões -->
-        <a class="btn" href="{{ route('register') }}">Registrar</a>
+        <a class="btn btn-secondary" href="{{ route('register') }}">Registrar</a>
         <a class="btn btn-secondary" href="{{ route('login') }}">Login</a>
     </div>
     <div class="container">

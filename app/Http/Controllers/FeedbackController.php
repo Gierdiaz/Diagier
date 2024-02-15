@@ -10,6 +10,6 @@ class FeedbackController extends Controller
     {
         $feedbacks = Feedback::all();
 
-        return $feedbacks;
+        return view('pages.feedbacks.index', compact('feedbacks'));
     }
 }

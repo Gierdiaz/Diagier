@@ -40,4 +40,9 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function manager(): BelongsTo
+    {
+        return $this->belongsTo(Manager::class);
+    }
 }

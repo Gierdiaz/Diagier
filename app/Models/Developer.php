@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,7 +18,7 @@ class Developer extends Model
         'github',
         'bio',
         'technologies',
-        'colleg',
+        'college',
         'course',
         'certifications',
         'company',
@@ -27,16 +27,20 @@ class Developer extends Model
         'state',
         'country',
         'work_mode',
-        'profile_id',
     ];
-
-    public function profile(): BelongsTo
-    {
-        return $this->belongsTo(Profile::class);
-    }
 
     public function project(): HasOne
     {
         return $this->hasOne(Project::class);
+    }
+
+    public function manager(): HasMany
+    {
+        return $this->hasMany(Manager::class);
+    }
+
+    public function managers(): HasMany
+    {
+        return $this->hasMany(Manager::class);
     }
 }

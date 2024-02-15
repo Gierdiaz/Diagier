@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'description' => $this->faker->text,
+            'description' => $this->faker->text(50),
             'client' => $this->faker->company,
             'technologies' => $this->faker->words(3, true),
             'start_date' => $this->faker->date,

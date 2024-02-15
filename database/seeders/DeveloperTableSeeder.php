@@ -12,6 +12,6 @@ class DeveloperTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Developer::factory()->count(1)->create();
+        Developer::factory()->count(10)->create();
     }
 }

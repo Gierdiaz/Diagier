@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('github')->unique();
             $table->text('bio')->nullable();
             $table->string('technologies');
-            $table->string('colleg');
+            $table->string('college');
             $table->string('course');
             $table->text('certifications')->nullable();
             $table->string('company');
@@ -40,7 +40,6 @@ return new class extends Migration
             $table->string('state');
             $table->string('country');
             $table->enum('work_mode', ['home_office', 'presential', 'hybrid']);
-            $table->foreignId('profile_id')->constrained('profiles')->onUpdate('cascade')->onDelete('cascade');
             $table->comment('Developer profiles');
             $table->softDeletes();
             $table->timestamps();

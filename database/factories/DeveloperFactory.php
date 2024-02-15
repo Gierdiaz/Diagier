@@ -24,7 +24,7 @@ class DeveloperFactory extends Factory
             'github' => $this->faker->unique()->userName,
             'bio' => $this->faker->text,
             'technologies' => $this->faker->words(3, true),
-            'colleg' => $this->faker->word,
+            'college' => $this->faker->word,
             'course' => $this->faker->word,
             'certifications' => $this->faker->text,
             'company' => $this->faker->company,
@@ -36,7 +36,6 @@ class DeveloperFactory extends Factory
             'state' => $this->faker->state,
             'country' => $this->faker->country,
             'work_mode' => $this->faker->randomElement(['home_office', 'presential', 'hybrid']),
-            'profile_id' => \App\Models\Profile::factory(),
             'created_at' => now(),
             'updated_at' => now(),
         ];
