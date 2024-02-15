@@ -10,13 +10,14 @@ use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/register', [AuthController::class, 'RegistrationForm'])->name('register.form');
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::get('/login', [AuthController::class, 'LoginForm'])->name('login.form');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::middleware('guest')->group(function(){
+    Route::get('register', [AuthController::class, 'RegistrationForm'])->name('register.form');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
     //TODO: verificar depois
     Route::get('/forgot-password', 'App\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 });
