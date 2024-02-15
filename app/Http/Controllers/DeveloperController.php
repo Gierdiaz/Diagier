@@ -4,40 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeveloperFormRequest;
 use App\Models\Developer;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DeveloperController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            $user = Auth::user();
-            view()->share('user', $user);
-
-            return $next($request);
-        });
-    }
 
     public function index(): View
     {
-        $developers = Developer::all();
+        $developers = Developer::orderBy('id', 'desc')->paginate(5);
 
         return view('pages.developers.index', compact('developers'));
-    }
-
-    public function create(): View
-    {
-        return view('pages.developers.create');
-    }
-
-    public function store(DeveloperFormRequest $request): RedirectResponse
-    {
-
-        Developer::create($request->all());
-
-        return redirect()->route('developers.index')->with('success', 'Desenvolvedor criado com sucesso');
     }
 
     public function show(Developer $developer): View
@@ -45,22 +22,35 @@ class DeveloperController extends Controller
         return view('pages.developers.show', compact('developer'));
     }
 
+    public function create(): View
+    {
+        return view('pages.developers.create');
+    }
+
+    public function store(DeveloperFormRequest $request)
+    {
+        dd($request);
+        Developer::create($request->validated());
+        
+        return redirect()->route('developers.index');
+    }
+
     public function edit(Developer $developer): View
     {
         return view('pages.developers.edit', compact('developer'));
     }
 
-    public function update(DeveloperFormRequest $request, Developer $developer): RedirectResponse
+    public function update(DeveloperFormRequest $request, Developer $developer)
     {
-        $developer->update($request->all());
+        $developer->update($request->validated());
 
-        return redirect()->route('developers.index')->with('success', 'Desenvolvedor atualizado com sucesso');
+        return redirect()->route('developers.index');
     }
 
-    public function destroy(Developer $developer): RedirectResponse
+    public function destroy(Developer $developer)
     {
         $developer->delete();
 
-        return redirect()->route('developers.index')->with('success', 'Desenvolvedor excluído com sucesso');
+        return redirect()->route('developers.index');
     }
 }

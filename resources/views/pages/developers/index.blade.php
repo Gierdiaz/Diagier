@@ -1,53 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Details</title>
-    <link href="{{ asset('css/developers.css') }}" rel="stylesheet">
-</head>
-<body>
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="#">Home</a>
-        <a href="{{ route('developers.index') }}">Developers</a>
-        <span>Developer Details</span>
+@extends('layout.layout')
+@section('content')
+<div class="row">
+    <div class="col-md-12">     
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}">Desenvolvedor</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}">Projeto</a></li>
+            </ol>
+        </nav>
+        <h2 class="mt-5 mb-5">Desenvelvedor - {{ $developers->first()->name }} </h2>
+        <div class="card">
+            <div class="card-header bg-blue">
+                <h4 class="mb-0 text-black">Desenvolvedores</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-lg">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">github</th>
+                                <th scope="col">Tecnologias</th>
+                                <th scope="col">level</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($developers as $developer)
+                            <tr>
+                                <td>{{ $developer->id }}</td>
+                                <td>{{ $developer->name }}</td>
+                                <td>{{ $developer->email }}</td>
+                                <td>{{ $developer->github }}</td>
+                                <td>{{ $developer->technologies }}</td>
+                                <td>{{ $developer->level }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('developers.edit', $developer->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
+                                        <form action="{{ route('developers.destroy', $developer->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            @can('delete', $developer)
+                                            <button type="submit" class="btn btn-danger btn-sm square-btn"><i class="material-icons">delete</i></button>
+                                            @endcan   
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $developers->links() }}
+                </div>
+                <div class="mt-3">
+                    <a href="{{ route('developers.create') }}" class="btn btn-secondary">Create</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Developer details -->
-    <table class="developer">
-        @foreach($developers as $developer)
-        <tr>
-        <td class="developer-details">
-                <ul>
-                    <li><strong>Name:</strong> {{ $developer->name }}</li>
-                    <li><strong>Email:</strong> {{ $developer->email }}</li>
-                    <li><strong>GitHub:</strong> {{ $developer->github }}</li>
-                    <li><strong>Bio:</strong> {{ $developer->bio }}</li>
-                    <li><strong>Technologies:</strong> {{ $developer->technologies }}</li>
-                    <li><strong>College:</strong> {{ $developer->college }}</li>
-                    <li><strong>Course:</strong> {{ $developer->course }}</li>
-                    <li><strong>Certifications:</strong> {{ $developer->certifications }}</li>
-                    <li><strong>Company:</strong> {{ $developer->company }}</li>
-                    <li><strong>Level:</strong> {{ $developer->level }}</li>
-                    <li><strong>City:</strong> {{ $developer->city }}</li>
-                    <li><strong>State:</strong> {{ $developer->state }}</li>
-                    <li><strong>Country:</strong> {{ $developer->country }}</li>
-                    <li><strong>Work Mode:</strong> {{ $developer->work_mode }}</li>
-                </ul>
-            </td>
-            <td class="developer-actions">
-                <form method="POST" action="{{ route('developers.destroy', ['developer' => $developer->id]) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button class="button button-delete" type="submit">Delete</button>
-                </form>
-                <a class="button" href="{{ route('developers.edit', ['developer' => $developer->id]) }}">Edit</a>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-
-    <!-- Button to create a new developer -->
-    <a class="button-new" href="{{ route('developers.create') }}">New Developer</a>
-</body>
-</html>
+</div>
+@endsection

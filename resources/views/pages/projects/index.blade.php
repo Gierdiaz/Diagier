@@ -15,17 +15,16 @@
                 <h4 class="mb-0 text-black">Projetos</h4>
             </div>
             <div class="card-body">
-                @if(!is_null($projects) && count($projects) > 0)
                 <div class="table-responsive">
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
-                                <th scope="col">Nome do Projeto</th>
+                                <th scope="col">Projeto</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Tecnologias</th>
-                                <th scope="col">Data de Início</th>
-                                <th scope="col">Data de Término</th>
+                                <th scope="col">Início</th>
+                                <th scope="col">Término</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Desenvolvedor</th>
                                 <th scope="col">Ações</th>
@@ -65,9 +64,6 @@
                 <div class="mt-3">
                     <a href="{{ route('projects.create') }}" class="btn btn-secondary">Create</a>
                 </div>
-                @else
-                <p>O desenvolvedor não está associado a nenhum projeto.</p>
-                @endif
             </div>
         </div>
     </div>

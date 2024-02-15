@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('github')->unique();
-            $table->text('bio')->nullable();
+            $table->text('bio');
             $table->string('technologies');
             $table->string('college');
             $table->string('course');
-            $table->text('certifications')->nullable();
+            $table->text('certifications');
             $table->string('company');
             $table->enum('level', [
                 'intern',

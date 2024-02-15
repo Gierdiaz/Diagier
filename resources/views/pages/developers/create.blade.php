@@ -1,93 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Developer</title>
-    <style>
-        .button-new {
-          background-color: #4c53af; /* Green background color */
-          border: none;
-          color: white;
-          padding: 10px 20px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-
-    <h2>Create Developer</h2>
-
-    <form method="POST" action="{{ route('developers.store') }}">
-        @csrf
-
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br>
-
-        <label for="github">GitHub:</label><br>
-        <input type="text" id="github" name="github"><br>
-
-        <label for="bio">Bio:</label><br>
-        <textarea id="bio" name="bio"></textarea><br>
-
-        <label for="technologies">Technologies:</label><br>
-        <input type="text" id="technologies" name="technologies"><br>
-
-        <label for="college">College:</label><br>
-        <input type="text" id="college" name="college"><br>
-
-        <label for="course">Course:</label><br>
-        <input type="text" id="course" name="course"><br>
-
-        <label for="certifications">Certifications:</label><br>
-        <input type="text" id="certifications" name="certifications"><br>
-
-        <label for="company">Company:</label><br>
-        <input type="text" id="company" name="company"><br>
-
-        <label for="level">Level:</label><br>
-        <select id="level" name="level">
-            <option value="intern">Intern</option>
-            <option value="junior">Junior</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="senior">Senior</option>
-            <option value="lead">Lead</option>
-            <option value="manager">Manager</option>
-            <option value="director">Director</option>
-            <option value="vp">VP</option>
-            <option value="executive">Executive</option>
-            <option value="admin">Admin</option>
-            <option value="specialist">Specialist</option>
-            <option value="consultant">Consultant</option>
-        </select><br>
-
-        <label for="city">City:</label><br>
-        <input type="text" id="city" name="city"><br>
-
-        <label for="state">State:</label><br>
-        <input type="text" id="state" name="state"><br>
-
-        <label for="country">Country:</label><br>
-        <input type="text" id="country" name="country"><br>
-
-        <label for="work_mode">Work Mode:</label><br>
-        <select id="work_mode" name="work_mode">
-            <option value="home_office">Home Office</option>
-            <option value="presential">Presential</option>
-            <option value="hybrid">Hybrid</option>
-        </select><br>
-
-        <button class="button-new" type="submit">Register Developer</button>
-    </form>
-
-</body>
-</html>
+@extends('layout.layout')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('developers.index') }}">Desenvolvedor</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}">Projeto</a></li>
+                </ol>
+            </nav>
+            <h2 class="mt-5 mb-5">Create Developer</h2>
+            <div class="card">
+                <div class="card-header bg-blue">
+                    <h4 class="mb-0 text-black">Create Developer</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('developers.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter name" value="{{old('name')}}">
+                            @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter email" value="{{old('email')}}">
+                            @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="github" class="form-label">GitHub</label>
+                            <input type="text" class="form-control @error('github') is-invalid @enderror" id="github" name="github" placeholder="Enter GitHub username" value="{{old('github')}}">
+                            @error('github')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" rows="3" placeholder="Enter bio">{{old('bio')}}</textarea>
+                            @error('bio')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="technologies" class="form-label">Technologies</label>
+                            <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies" placeholder="Enter technologies" value="{{old('technologies')}}">
+                            @error('technologies')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="college" class="form-label">college</label>
+                            <input type="text" class="form-control @error('college') is-invalid @enderror" id="college" name="college" placeholder="Enter college" value="{{old('college')}}">
+                            @error('college')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="course" class="form-label">course</label>
+                            <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" name="course" placeholder="Enter course" value="{{old('course')}}">
+                            @error('course')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="certifications" class="form-label">certifications</label>
+                            <input type="text" class="form-control @error('certifications') is-invalid @enderror" id="certifications" name="certifications" placeholder="Enter certifications" value="{{old('certifications')}}">
+                            @error('certifications')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="company" class="form-label">company</label>
+                            <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" name="company" placeholder="Enter company" value="{{old('company')}}">
+                            @error('company')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="level" class="form-label">Level</label>
+                            <select class="form-select @error('level') is-invalid @enderror" id="level" name="level">
+                                <option value="intern">Intern</option>
+                                <option value="junior">Junior</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="senior">Senior</option>
+                                <option value="lead">Lead</option>
+                                <option value="manager">Manager</option>
+                                <option value="director">Director</option>
+                                <option value="vp">VP</option>
+                                <option value="executive">Executive</option>
+                                <option value="admin">Admin</option>
+                                <option value="specialist">Specialist</option>
+                                <option value="consultant">Consultant</option>
+                            </select>
+                            @error('level')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">city</label>
+                            <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" placeholder="Enter city" value="{{old('city')}}">
+                            @error('city')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="state" class="form-label">state</label>
+                            <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" name="state" placeholder="Enter state" value="{{old('state')}}">
+                            @error('state')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="technologies" class="form-label">country</label>
+                            <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies" placeholder="Enter technologies" value="{{old('technologies')}}">
+                            @error('technologies')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="work_mode" class="form-label">Work Mode</label>
+                            <select class="form-select @error('work_mode') is-invalid @enderror" id="work_mode" name="work_mode">
+                                <option value="home_office">Home Office</option>
+                                <option value="presential">Presential</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                            @error('work_mode')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Create Developer</button>
+                            <a href="{{ route('developers.index') }}" class="btn btn-secondary">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
