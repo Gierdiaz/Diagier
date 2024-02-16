@@ -3,15 +3,15 @@
 <div class="row">
     <div class="col-md-12">     
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}">Desenvolvedor</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}">Projeto</a></li>
+            <ol class="breadcrumb mt-5" style="color: rgb(150, 95, 24);">
+                <li class="breadcrumb-item"><a href="/" style="color: rgb(150, 95, 24);">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}" style="color: rgb(150, 95, 24);">Desenvolvedor</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}" style="color: rgb(150, 95, 24);">Projeto</a></li>
             </ol>
         </nav>
-        <h2 class="mt-5 mb-5">Desenvelvedor - {{ $developers->first()->name }} </h2>
+        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Desenvelvedor - {{ $developers->first()->name }} </h2>
         <div class="card">
-            <div class="card-header bg-blue">
+            <div class="card-header" style="background-color: rgb(150, 95, 24);">
                 <h4 class="mb-0 text-black">Desenvolvedores</h4>
             </div>
             <div class="card-body">
@@ -19,13 +19,13 @@
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">github</th>
-                                <th scope="col">Tecnologias</th>
-                                <th scope="col">level</th>
-                                <th scope="col">Ações</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Código</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Nome</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Email</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">github</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Tecnologias</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">level</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +59,7 @@
                     {{ $developers->links() }}
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('developers.create') }}" class="btn btn-secondary">Create</a>
+                    <a href="{{ route('developers.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>
             </div>
         </div>

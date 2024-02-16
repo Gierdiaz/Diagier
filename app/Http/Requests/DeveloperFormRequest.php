@@ -8,36 +8,32 @@ class DeveloperFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true; 
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string',
             'email' => 'required|email|unique:developers,email',
             'github' => 'required|string|unique:developers,github',
-            'bio' => 'nullable|string',
-            'technologies' => 'required|string|max:255',
-            'college' => 'required|string|max:255',
-            'course' => 'required|string|max:255',
-            'certifications' => 'nullable|string',
-            'company' => 'required|string|max:255',
-            'level' => 'required|string|in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant',
-            'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'work_mode' => 'required|string|in:home_office,presential,hybrid',
+            'bio' => 'string',
+            'technologies' => 'required|string',
+            'college' => 'required|string',
+            'course' => 'required|string',
+            'certifications' => 'string',
+            'company' => 'required|string',
+            'level' => 'required|in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'work_mode' => 'required|in:home_office,presential,hybrid',
         ];
     }
 }

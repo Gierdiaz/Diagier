@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
@@ -11,20 +10,21 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', function(){
+    return view('main.main');
+})->name('main');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [AuthController::class, 'RegistrationForm'])->name('register.form');
     Route::post('register', [AuthController::class, 'register'])->name('register');
     Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
     Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     //TODO: verificar depois
     Route::get('/forgot-password', 'App\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-
-    Route::get('/layout', [LayoutController::class, 'index'])->name('layout');
 
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');

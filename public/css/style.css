@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lora;
+}
+
+body {
+    /*     min-height: 100vh;
+    background: url(img/backgroundHealthy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 100px;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    background: rgb(255, 255, 255, .1);
+    /* background: transparent; */
+}
+
+img {
+    width: 100%;
+}
+
+#header .nav-logo a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    padding: 70px;
+}
+
+#header .nav-bar a {
+    padding: 0 20px 0 10px;
+    color: rgb(150, 95, 24);
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    margin-right: 50px;
+}
+
+
+/* __EFEITO NA BARRA DE NAVEGAÇÃO__ */
+
+#header .nav-bar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: .5s;
+    background-color: rgb(150, 95, 24);
+}
+
+#header .nav-bar a:hover::before {
+    width: 100%;
+}
+
+#container-health h2 {
+    margin: 300px 0px 300px 0;
+    text-align: center;
+    font-size: 40px;
+    color: rgb(150, 95, 24);
+}
+
+/* __Foooter__ */
+
+#footer {
+    list-style: none;
+    display: flex;
+    padding: 80px 8% 70px;
+    gap: 3.5rem;
+    background-color: rgb(150, 95, 24);
+    overflow: hidden;
+}
+
+#footer .footer-content .footer-logo {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    padding-bottom: 20px;
+}
+
+#footer p {
+    margin-top: 10px;
+    color: white;
+}
+
+#footer .footer-content h4 {
+    margin-top: 10px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+#footer .footer-content li a {
+    text-decoration: none;
+    color: white;
+    padding-bottom: 10px;
+    display: block;
+    transition: all .40s ease;
+    font-size: 18px;
+}
+
+#footer .footer-content li a:hover {
+    transform: translateY(-3px) translateX(-5px);
+    color: black
+}
+
+#footer .footer-content .icons a i {
+    color: black;
+    font-size: 35px;
+    transition: .9s;
+    margin-top: 20px;
+}
+
+#footer .footer-content .icons a:hover i {
+    color: white;
+}
+
+
+/* __Sub-footer copyright__ */
+
+.sub-footer {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(150, 95, 24);
+    padding-bottom: 10px;
+
+
+}
+
+.sub-footer span {
+    text-transform: capitalize;
+    opacity: .8;
+}
