@@ -3,10 +3,10 @@
 <div class="row">
     <div class="col-md-12">     
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}">Desenvolvedor</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}">Projeto</a></li>
+            <ol class="breadcrumb mt-5" style="color: rgb(150, 95, 24);">
+                <li class="breadcrumb-item"><a href="/" style="color: rgb(150, 95, 24);">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}" style="color: rgb(150, 95, 24);">Desenvolvedor</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}" style="color: rgb(150, 95, 24);">Projeto</a></li>
             </ol>
         </nav>
         <h2 class="mt-5 mb-5">Projetos do Desenvolvedor - {{ $projects->first()->developer->name }}</h2>
@@ -15,17 +15,16 @@
                 <h4 class="mb-0 text-black">Projetos</h4>
             </div>
             <div class="card-body">
-                @if(!is_null($projects) && count($projects) > 0)
                 <div class="table-responsive">
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
-                                <th scope="col">Nome do Projeto</th>
+                                <th scope="col">Projeto</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Tecnologias</th>
-                                <th scope="col">Data de Início</th>
-                                <th scope="col">Data de Término</th>
+                                <th scope="col">Início</th>
+                                <th scope="col">Término</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Desenvolvedor</th>
                                 <th scope="col">Ações</th>
@@ -65,9 +64,6 @@
                 <div class="mt-3">
                     <a href="{{ route('projects.create') }}" class="btn btn-secondary">Create</a>
                 </div>
-                @else
-                <p>O desenvolvedor não está associado a nenhum projeto.</p>
-                @endif
             </div>
         </div>
     </div>

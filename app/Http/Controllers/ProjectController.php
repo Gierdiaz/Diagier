@@ -18,6 +18,7 @@ class ProjectController extends Controller
 
     public function show()
     {
+        
     }
 
     public function create(): View
@@ -29,25 +30,29 @@ class ProjectController extends Controller
 
     public function store(ProjectFormRequest $request)
     {
-        $project = $request->validated();
-        $project['developer_id'];
-        Project::create($project);
+        Project::create($request->validated());
 
         return redirect()->route('projects.index');
     }
 
-    public function edit()
+    public function edit($project)
     {
+        $project = Project::findOrFail($project);
+        $developers = Developer::all();
+        return view('pages.projects.edit', compact('project', 'developers'));
     }
 
-    public function update()
+    public function update(ProjectFormRequest $request, $id)
     {
+        Project::findOrFail($id)->update($request->validated());
+
+        return redirect()->route('projects.index');
     }
 
     public function destroy(Project $project)
     {
         $this->authorize('delete', $project);
-        
+
         $project->delete();
 
         return redirect()->route('projects.index');

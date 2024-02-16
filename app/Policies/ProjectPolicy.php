@@ -45,8 +45,6 @@ class ProjectPolicy
     /**
      * Determine whether the user can delete the project.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
      * @return mixed
      */
     public function delete(User $user, Project $project)

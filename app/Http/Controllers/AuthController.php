@@ -48,9 +48,17 @@ class AuthController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
 
-            return redirect()->route('layout', ['user' => $user]);
+            return redirect()->route('main', ['user' => $user]);
         }
 
         return redirect()->back()->withInput()->withErrors(['email' => 'Credenciais inválidas']);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }
