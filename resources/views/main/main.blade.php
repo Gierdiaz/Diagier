@@ -84,7 +84,7 @@
             </div>
         </footer>
         <div class="sub-footer">
-            <p>Copyright &copy;2023 Tech Sauce. Designed by <span>Állison Diaz</span> All Rights Reserved</p>
+            <p>Copyright &copy;2024 Tech Sauce. Designed by <span>Állison Diaz</span> All Rights Reserved</p>
         </div>
     
         <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>

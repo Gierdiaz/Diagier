@@ -19,13 +19,18 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register'])->name('register');
     Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
     Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+   
     //TODO: verificar depois
-    Route::get('/forgot-password', 'App\Http\Controllers\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('forgot-password', [AuthController::class, 'ForgotPasswordForm'])->name('password.request');
+    Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
+    Route::get('reset-password/{token}', [AuthController::class, 'ResetPasswordForm'])->name('password.reset');
+    Route::post('reset-password', [AuthController::class, 'reset'])->name('password.update');
 });
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+Route::middleware('auth:sanctum')->group(function () {
+   
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');
     Route::get('developers/create', [DeveloperController::class, 'create'])->name('developers.create');

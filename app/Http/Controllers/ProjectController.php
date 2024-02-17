@@ -35,11 +35,11 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function edit($project)
+    public function edit($projects)
     {
-        $project = Project::findOrFail($project);
+        $projects = Project::findOrFail($projects);
         $developers = Developer::all();
-        return view('pages.projects.edit', compact('project', 'developers'));
+        return view('pages.projects.edit', compact('projects', 'developers'));
     }
 
     public function update(ProjectFormRequest $request, $id)
@@ -49,11 +49,11 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function destroy(Project $project)
+    public function destroy(Project $projects)
     {
-        $this->authorize('delete', $project);
+        $this->authorize('delete', $projects);
 
-        $project->delete();
+        $projects->delete();
 
         return redirect()->route('projects.index');
     }

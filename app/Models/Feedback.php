@@ -23,11 +23,6 @@ class Feedback extends Model
         'task_id',
     ];
 
-    public function manager(): BelongsTo
-    {
-        return $this->belongsTo(Manager::class);
-    }
-
     public function task(): BelongsTo
     {
         return $this->belongsTo(Task::class);

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeveloperFormRequest;
 use App\Models\Developer;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DeveloperController extends Controller
