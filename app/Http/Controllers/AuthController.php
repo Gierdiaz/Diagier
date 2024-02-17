@@ -6,6 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use App\Notifications\ResetPasswordNotification;
+
 
 class AuthController extends Controller
 {
@@ -14,15 +19,21 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    /**
+     * Registrar um novo usuário.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * 
+     */
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -36,29 +47,87 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    /**
+     * Autenticar um usuário.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required', 'email',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $request->input('email'))->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('token-name')->plainTextToken;
 
             return redirect()->route('main', ['user' => $user]);
         }
 
-        return redirect()->back()->withInput()->withErrors(['email' => 'Credenciais inválidas']);
+        return back()->withErrors([
+            'email' => 'As credenciais fornecidas estão incorretas.',
+        ]);
     }
 
+    /**
+     * Desconectar o usuário autenticado (logout).
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::logout(); 
+        $request->session()->invalidate(); 
+        $request->session()->regenerateToken(); 
+    
         return redirect()->route('login');
+    }
+
+    /**
+     * Enviar e-mail com link para redefinição de senha.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function forgot(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 422);
+        }
+
+        $status = Password::sendResetLink(
+            $request->only('email'),
+            new ResetPasswordNotification(Password::broker()->createToken($request->only('email')))
+        );
+
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['message' => __($status)])
+            : response()->json(['error' => __($status)], 400);
+    }
+
+    /**
+     * Exibir formulário para esquecer a senha.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function ForgotPasswordForm()
+    {
+        return view('auth.forgot-password');
+    }
+
+    /**
+     * Exibir formulário para redefinir a senha.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function ResetPasswordForm(Request $request)
+    {
+        return view('auth.reset-password', ['request' => $request]);
     }
 }

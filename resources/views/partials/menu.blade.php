@@ -8,18 +8,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('developers.index') }}">Desenvolvedores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('projects.index') }}">Projetos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('tasks.index') }}">Tarefas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('feedbacks.index') }}">Feedbacks</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-white" href="#">{{ Auth::user()->name }}</a>
                 </li>
             </ul>
