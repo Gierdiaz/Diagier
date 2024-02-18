@@ -13,7 +13,7 @@
 <body>
     <header id="header">
         <div class="nav-logo">
-            <a href="{{ route('main') }}">TechSphere</a>
+            <a href="{{ route('main') }}">Diagier</a>
         </div>
         <nav class="nav-bar">  
             <div>
@@ -38,7 +38,7 @@
     <footer id="footer">
         <div  class="row">
             <div class="footer-content col-md">
-                <a class="footer-logo">Tech Sauce</a>
+                <a class="footer-logo">Diagier</a>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ut reprehenderit ipsum laudantium debitis ab ex, neque non at est laborum numquam, sint recusandae eius</p>
                 <div class="icons">
                     <a href="#"><i class='bx bxl-facebook-circle'></i></a>
