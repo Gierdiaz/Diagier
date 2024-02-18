@@ -30,7 +30,9 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">Término</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Status</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Desenvolvedor</th>
+                                @can('view', $projects)
                                 <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +48,9 @@
                                 <td>{{ $project->developer->name }}</td>
                                 <td>
                                     <div class="btn-group">
+                                        @can('update', $project)
                                         <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
+                                        @endcan
                                         <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
@@ -64,9 +68,11 @@
                 <div class="d-flex justify-content-center">
                     {{ $projects->links() }}
                 </div>
+                @can('create', $project)
                 <div class="mt-3">
                     <a href="{{ route('projects.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>
+                @endcan 
             </div>
         </div>
     </div>

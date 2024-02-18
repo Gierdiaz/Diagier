@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mt-5" style="color: rgb(150, 95, 24);">
                 <li class="breadcrumb-item"><a href="/" style="color: rgb(150, 95, 24);">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Developer</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}" style="color: rgb(150, 95, 24);">Developer</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}" style="color: rgb(150, 95, 24);">Project</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('tasks.index') }}" style="color: rgb(150, 95, 24);">Task</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Feedback</a></li>
@@ -29,7 +29,9 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">Rating</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Feedback</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Task</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
+                                @can('view', $feedbacks)
+                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +46,9 @@
                                 <td>{{ $feedback->task->name }}</td>
                                 <td>
                                     <div class="btn-group">
+                                        @can('edit', $feedbacks)
                                         <a href="{{ route('feedbacks.edit', $feedback->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
+                                        @endcan
                                         <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
@@ -63,9 +67,11 @@
                 <div class="d-flex justify-content-center">
                     {{ $feedbacks->links() }}
                 </div>
+                @can('create', $feedbacks)
                 <div class="mt-3">
                     <a href="{{ route('feedbacks.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
-                </div>
+                </div>   
+                @endcan
             </div>
         </div>
     </div>

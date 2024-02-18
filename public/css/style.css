@@ -143,3 +143,21 @@ img {
     text-transform: capitalize;
     opacity: .8;
 }
+
+/* Estilizando as cores personalizadas do paginador */
+
+.pagination .page-item .page-link {
+    color: #fff;
+    background-color:rgb(150, 95, 24);
+    border-color:rgb(150, 95, 24); 
+}
+
+.pagination .page-item .page-link:hover {
+    background-color:rgb(150, 95, 24); 
+    border-color:rgb(150, 95, 24); 
+}
+
+.pagination .page-item.active .page-link {
+    background-color:rgb(150, 95, 24); 
+    border-color:rgb(150, 95, 24);  
+}
