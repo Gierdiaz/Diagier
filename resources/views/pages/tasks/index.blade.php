@@ -30,6 +30,9 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">Status</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Developer</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Project</th>
+                                @can('view', $tasks)
+                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -46,13 +49,15 @@
                                 <td>{{ $task->project->name }}</td>
                                 <td>
                                     <div class="btn-group">
+                                        @can('edit', $tasks)
                                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
+                                        @endcan
                                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             @can('delete', $task)
                                             <button type="submit" class="btn btn-danger btn-sm square-btn"><i class="material-icons">delete</i></button>
-                                            @endcan   
+                                            @endcan 
                                         </form>
                                     </div>
                                 </td>
@@ -64,9 +69,11 @@
                 <div class="d-flex justify-content-center">
                     {{ $tasks->links() }}
                 </div>
+                @can('create', $tasks)
                 <div class="mt-3">
                     <a href="{{ route('tasks.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>
+                @endcan
             </div>
         </div>
     </div>

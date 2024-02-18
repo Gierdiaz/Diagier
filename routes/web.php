@@ -14,6 +14,10 @@ Route::get('/', function(){
     return view('main.main');
 })->name('main');
 
+Route::get('/maintenance', function () {
+    return view('wait.wait');
+})->name('wait');
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [AuthController::class, 'RegistrationForm'])->name('register.form');
     Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -25,6 +29,7 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
     Route::get('reset-password/{token}', [AuthController::class, 'ResetPasswordForm'])->name('password.reset');
     Route::post('reset-password', [AuthController::class, 'reset'])->name('password.update');
+
 });
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

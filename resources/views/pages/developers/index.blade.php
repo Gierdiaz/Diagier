@@ -12,13 +12,13 @@
                 <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Feedback</a></li>
             </ol>
         </nav>
-        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Desenvelvedor - {{ $developers->first()->name }} </h2>
+        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Desenvolvedor - {{ $developers->first()->name }} </h2>
         <div class="card">
             <div class="card-header" style="background-color: rgb(150, 95, 24);">
                 <h4 class="mb-0 text-black">Desenvolvedores</h4>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive" id="developers-table">
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
@@ -28,7 +28,10 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">github</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Tecnologias</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">level</th>
+                                @can('view', $developers)
                                 <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
+                                @endcan
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -42,27 +45,26 @@
                                 <td>{{ $developer->level }}</td>
                                 <td>
                                     <div class="btn-group">
+                                        @can('update', $developer)
                                         <a href="{{ route('developers.edit', $developer->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
+                                        @endcan
                                         <form action="{{ route('developers.destroy', $developer->id) }}" method="POST" style="display: inline;">
                                             @csrf
-                                            @method('DELETE')
+                                            @method('DELETE') 
                                             @can('delete', $developer)
                                             <button type="submit" class="btn btn-danger btn-sm square-btn"><i class="material-icons">delete</i></button>
-                                            @endcan   
+                                            @endcan
                                         </form>
+                                          
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
-                            
+                            @endforeach    
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center" id="pagination-links">
                     {{ $developers->links() }}
-                </div>
-                <div class="mt-3">
-                    <a href="{{ route('developers.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>
             </div>
         </div>
