@@ -22,15 +22,16 @@
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Código</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Nome</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Code</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Name</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Email</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">github</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Tecnologias</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Github</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Technologies</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">level</th>
-                                @can('view', $developers)
-                                <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
-                                @endcan
+                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
+                                {{-- @can('view', $developers)
+                                
+                                @endcan --}}
                                
                             </tr>
                         </thead>
@@ -66,6 +67,11 @@
                 <div class="d-flex justify-content-center" id="pagination-links">
                     {{ $developers->links() }}
                 </div>
+                @can('create', $developer)
+                <div class="mt-3">
+                    <a href="{{ route('developers.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
+                </div>
+                @endcan 
             </div>
         </div>
     </div>

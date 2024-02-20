@@ -17,7 +17,7 @@
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('wait')}}">Profile</a></li>
-                        <li><a class="dropdown-item" href="{{ route('wait')}}">Settings</a></li>
+                        <li><a class="dropdown-item" href="{{ route('settings')}}">Settings</a></li>
                     </ul>
                 </li>
             </ul>

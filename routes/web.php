@@ -35,6 +35,9 @@ Route::middleware('guest')->group(function () {
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
+    Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
    
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');

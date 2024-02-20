@@ -51,7 +51,7 @@ class FeedbackController extends Controller
 
     public function destroy(Feedback $feedbacks)
     {
-        $this->authorize('delete', $feedbacks);
+         $this->authorize('delete', $feedbacks);
 
         $feedbacks->delete();
 

@@ -15,7 +15,7 @@
         <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Feedback - {{ $feedbacks->first()->name }} </h2>
         <div class="card">
             <div class="card-header" style="background-color: rgb(150, 95, 24);">
-                <h4 class="mb-0 text-black">Desenvolvedores</h4>
+                <h4 class="mb-0 text-black">Feedback</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -29,9 +29,10 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">Rating</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Feedback</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Task</th>
-                                @can('view', $feedbacks)
                                 <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
-                                @endcan
+                                {{-- @can('view', $feedbacks)
+                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
+                                @endcan --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +47,7 @@
                                 <td>{{ $feedback->task->name }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        @can('edit', $feedbacks)
+                                        @can('update', $feedback)
                                         <a href="{{ route('feedbacks.edit', $feedback->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
                                         @endcan
                                         <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST" style="display: inline;">
@@ -67,7 +68,7 @@
                 <div class="d-flex justify-content-center">
                     {{ $feedbacks->links() }}
                 </div>
-                @can('create', $feedbacks)
+                @can('create', $feedback)
                 <div class="mt-3">
                     <a href="{{ route('feedbacks.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>   
