@@ -20,7 +20,7 @@ class TaskFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'description' => $this->faker->text,
+            'description' => $this->faker->text(50),
             'comments' => $this->faker->text,
             'sprint' => $this->faker->date,
             'priority' => $this->faker->randomElement(['high', 'medium', 'low']),

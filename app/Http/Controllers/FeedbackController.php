@@ -39,6 +39,7 @@ class FeedbackController extends Controller
     {
         $feedbacks = Feedback::findOrFail($feedbacks);
         $tasks = Task::all();
+
         return view('pages.feedbacks.edit', compact('feedbacks', 'tasks'));
     }
 
@@ -51,7 +52,7 @@ class FeedbackController extends Controller
 
     public function destroy(Feedback $feedbacks)
     {
-         $this->authorize('delete', $feedbacks);
+        $this->authorize('delete', $feedbacks);
 
         $feedbacks->delete();
 

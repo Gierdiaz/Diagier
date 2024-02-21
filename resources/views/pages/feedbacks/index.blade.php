@@ -44,7 +44,7 @@
                                 <td>{{ $feedback->attachments }}</td>
                                 <td>{{ $feedback->rating }}</td>
                                 <td>{{ $feedback->feedback }}</td>
-                                <td>{{ $feedback->task->name }}</td>
+                                <td>{{ $feedback->task ? $feedback->task->name : 'No Task assigned' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         @can('update', $feedback)

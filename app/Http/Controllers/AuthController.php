@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use App\Notifications\ResetPasswordNotification;
-
 
 class AuthController extends Controller
 {
@@ -21,9 +19,6 @@ class AuthController extends Controller
 
     /**
      * Registrar um novo usuário.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * 
      */
     public function register(Request $request)
     {
@@ -49,8 +44,6 @@ class AuthController extends Controller
 
     /**
      * Autenticar um usuário.
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     public function login(Request $request)
     {
@@ -73,22 +66,18 @@ class AuthController extends Controller
 
     /**
      * Desconectar o usuário autenticado (logout).
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     public function logout(Request $request)
     {
-        Auth::logout(); 
-        $request->session()->invalidate(); 
-        $request->session()->regenerateToken(); 
-    
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
 
     /**
      * Enviar e-mail com link para redefinição de senha.
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     public function forgot(Request $request)
     {
@@ -123,7 +112,6 @@ class AuthController extends Controller
     /**
      * Exibir formulário para redefinir a senha.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function ResetPasswordForm(Request $request)

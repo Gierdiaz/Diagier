@@ -29,7 +29,7 @@ class TaskFormRequest extends FormRequest
             'priority' => ['required', 'in:high,medium,low'],
             'status' => ['required', 'in:to-do,progress,completed'],
             'developer_id' => ['required', 'exists:developers,id'],
-            'project_id' => ['nullable', 'exists:projects,id'],
+            'project_id' => ['required', 'exists:projects,id'],
         ];
     }
 }

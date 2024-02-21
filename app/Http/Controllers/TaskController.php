@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index(): View
     {
-        $tasks = Task::orderBy('id', 'desc')->paginate(5);
+        $tasks = Task::with(['developer', 'project'])->orderBy('id', 'desc')->paginate(5);
 
         return view('pages.tasks.index', compact('tasks'));
     }
@@ -21,10 +21,11 @@ class TaskController extends Controller
     {
         //
     }
-    
+
     public function create(): View
     {
         $developers = Developer::all();
+
         $projects = Project::all();
 
         return view('pages.tasks.create', compact('developers', 'projects'));
@@ -32,32 +33,35 @@ class TaskController extends Controller
 
     public function store(TaskFormRequest $request)
     {
-
         Task::create($request->validated());
 
         return redirect()->route('tasks.index');
     }
 
-    public function edit($tasks)
+    public function edit($id)
     {
-        $tasks = Task::findOrFail($tasks);
+        $task = Task::findOrFail($id);
+
         $developers = Developer::all();
+        
         $projects = Project::all();
-        return view('pages.tasks.edit', compact('tasks', 'developers', 'projects'));
+
+        return view('pages.tasks.edit', compact('task', 'developers', 'projects'));
     }
 
     public function update(TaskFormRequest $request, $id)
     {
-        Task::findOrFail($id)->update($request->validated());
+        $task = Task::findOrFail($id);
+        $task->update($request->validated());
 
         return redirect()->route('tasks.index');
     }
 
-    public function destroy(Taks $tasks)
+    public function destroy(Task $task)
     {
-        $this->authorize('delete', $tasks);
+        $this->authorize('delete', $task);
 
-        $tasks->delete();
+        $task->delete();
 
         return redirect()->route('tasks.index');
     }

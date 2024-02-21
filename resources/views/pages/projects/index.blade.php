@@ -12,27 +12,29 @@
                 <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Feedback</a></li>
             </ol>
         </nav>
-        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Projetos do Desenvolvedor - {{ $projects->first()->developer->name }}</h2>
+        @if ($projects->isNotEmpty())
+        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Developer's Projects - {{ $projects->first()->developer ? $projects->first()->developer->name : 'No projects assigned' }} </h2>
+        @else
+            <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Developer's Projects - No projects assigned</h2>
+        @endif
         <div class="card">
             <div class="card-header" style="background-color: rgb(150, 95, 24);">
-                <h4 class="mb-0 text-black">Projetos</h4>
+                <h4 class="mb-0 text-black">Projects</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Código</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Projeto</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Descrição</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Tecnologias</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Início</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Término</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">ID</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Name</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Description</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Technologies</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Start Date</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">End Date</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Status</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Desenvolvedor</th>
-                                @can('view', $projects)
-                                <th scope="col" style="color: rgb(150, 95, 24);">Ações</th>
-                                @endcan
+                                <th scope="col" style="color: rgb(150, 95, 24);">Developer</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +47,7 @@
                                 <td>{{ $project->start_date->format('d/m/Y') }}</td>
                                 <td>{{ $project->end_date->format('d/m/Y') }}</td>
                                 <td>{{ ucfirst($project->status) }}</td>
-                                <td>{{ $project->developer->name }}</td>
+                                <td>{{ $project->developer ? $project->developer->name : 'No developer assigned' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         @can('update', $project)

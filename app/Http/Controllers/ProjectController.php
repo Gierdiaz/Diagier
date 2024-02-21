@@ -11,14 +11,14 @@ class ProjectController extends Controller
 {
     public function index(): View
     {
-        $projects = Project::orderBy('id', 'desc')->paginate(5);
+        $projects = Project::with('developer')->orderBy('id', 'desc')->paginate(5);
 
         return view('pages.projects.index', compact('projects'));
     }
 
     public function show()
     {
-        
+        //
     }
 
     public function create(): View
@@ -35,25 +35,29 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function edit($projects)
+    public function edit($id)
     {
-        $projects = Project::findOrFail($projects);
+        $project = Project::findOrFail($id);
+
         $developers = Developer::all();
-        return view('pages.projects.edit', compact('projects', 'developers'));
+
+        return view('pages.projects.edit', compact('project', 'developers'));
     }
 
     public function update(ProjectFormRequest $request, $id)
     {
-        Project::findOrFail($id)->update($request->validated());
+        $project = Project::findOrFail($id);
+        
+        $project->update($request->validated());
 
         return redirect()->route('projects.index');
     }
 
-    public function destroy(Project $projects)
+    public function destroy(Project $project)
     {
-        $this->authorize('delete', $projects);
+        $this->authorize('delete', $project);
 
-        $projects->delete();
+        $project->delete();
 
         return redirect()->route('projects.index');
     }

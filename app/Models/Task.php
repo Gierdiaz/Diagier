@@ -42,9 +42,4 @@ class Task extends Model
     {
         return $this->hasMany(Feedback::class);
     }
-
-    public function manager(): BelongsTo
-    {
-        return $this->belongsTo(Manager::class);
-    }
 }
