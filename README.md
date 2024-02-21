@@ -1,4 +1,3 @@
-
 # Project Management System using Laravel
 
 This is a project for a Project Management System developed with the Laravel framework. The system allows users to efficiently manage projects, tasks, deadlines, and teams.
