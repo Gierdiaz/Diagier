@@ -8,9 +8,21 @@ This is a project for a Project Management System developed with the Laravel fra
 
 - **Access Permissions**: Definition of different levels of access permissions for users, such as administrator, project manager, and team member.
 
-- **CRUD for Projects**: CRUD (Create, Read, Update, Delete) operations for projects, allowing the creation, viewing, updating, and deletion of projects.
+- **Projects**: CRUD operations for projects, allowing the creation, viewing, updating, and deletion of projects.
 
-- **CRUD for Tasks**: CRUD operations for tasks within each project, allowing complete management of activities related to a project.
+- **Team Members**: CRUD operations for Team Members, allows administrators to manage team members by adding, removing, or updating information such as name, role, email, etc.
+
+- **Clients or Stakeholders**: CRUD operations for Clients or Stakeholders, maintain a record of clients or stakeholders involved in the projects, including contact information, company details, and interaction history.
+
+- **Documents**: CRUD operations for Documents, enable uploading, viewing, and management of documents related to projects, such as specifications, contracts, spreadsheets, etc.
+
+- **Project Stages**: CRUD operations for Project Stages, divide projects into stages or phases and allow management of these stages, including setting deadlines, assigning responsibilities, and tracking completion status.
+
+- **Tasks**: CRUD operations for tasks within each project, allowing complete management of activities related to a project.
+
+- **Developers**: CRUD operations for Developers, manage developers involved in the projects, including their profiles, skills, availability, and assignments to specific tasks or projects.
+
+- **Feedbacks**: CRUD operations for Feedbacks, provide a mechanism for team members to give and receive feedback on tasks, projects, or overall performance, facilitating continuous improvement and communication within the team.
 
 - **Deadline Management**: Inclusion of fields to set deadlines for projects and tasks, with automatic notifications when deadlines are approaching or overdue.
 
@@ -19,24 +31,6 @@ This is a project for a Project Management System developed with the Laravel fra
 - **User-Friendly Blade Interfaces**: Development of intuitive and user-friendly user interfaces to view and interact with projects and tasks.
 
 - **Project Progress Reports**: Generation of reports on project progress, visually presenting task status and deadline compliance.
-
-## Advanced Features to Consider:
-
-- **Real-Time Notifications**: Implementation of real-time notifications using Laravel Echo and WebSockets for instant updates on new tasks, deadline changes, etc.
-
-- **Task Scheduling**: Utilization of Laravel Scheduler to schedule recurring tasks, such as sending automatic reminders for approaching deadlines or generating reports.
-
-- **Email Integration**: Configuration of email sending to notify users about new tasks, project changes, or invitations to join a team.
-
-- **Commenting and Discussion System**: Addition of a commenting system to tasks and projects to allow discussions and additional updates.
-
-- **Integration with Third-Party Tools**: Integration with other popular tools used in software development, such as GitHub, GitLab, Trello, or Slack.
-
-- **Two-Factor Authentication (2FA)**: Strengthening application security by implementing two-factor authentication for users.
-
-- **Logs and Monitoring**: Configuration of logging and integration with monitoring tools to diagnose issues and optimize application performance.
-
-- **Data Backup and Restoration**: Implementation of a regular backup system to protect application data against loss or corruption.
 
 ## Additional Development Tools:
 
