@@ -120,7 +120,7 @@ Contributions are welcome! To contribute to this project, follow these steps:
 
 1. Fork this repository
 2. Create a new branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
+3. Commit your changes (`git commit -m [STATUS] [File name] Feature`)
 4. Push to the branch (`git push origin feature/new-feature`)
 5. Submit a Pull Request
 
