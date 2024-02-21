@@ -84,6 +84,7 @@
                         <div class="mb-3">
                             <label for="developer_id" class="form-label">Developer</label>
                             <select class="form-select @error('developer_id') is-invalid @enderror" id="developer_id" name="developer_id">
+                                <option selected disabled>Choose a developer</option>
                                 @foreach($developers as $developer)
                                 <option value="{{ $developer->id }}">{{ $developer->name }}</option>
                                 @endforeach

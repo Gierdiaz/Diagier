@@ -1,4 +1,5 @@
 @extends('layout.layout')
+
 @section('content')
 <div class="row">
     <div class="col-md-12">     
@@ -11,7 +12,9 @@
                 <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Feedback</a></li>
             </ol>
         </nav>
-        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Tarefas do Desenvolvedor - {{ $tasks->first()->developer->name }}</h2>
+        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">
+            Tasks
+        </h2>              
         <div class="card">
             <div class="card-header bg-blue" style="background-color: rgb(150, 95, 24);">
                 <h4 class="mb-0 text-black">Tasks</h4>
@@ -21,7 +24,7 @@
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Código</th>
+                                <th scope="col" style="color: rgb(150, 95, 24);">ID</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Name</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Description</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Comments</th>
@@ -30,9 +33,7 @@
                                 <th scope="col" style="color: rgb(150, 95, 24);">Status</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Developer</th>
                                 <th scope="col" style="color: rgb(150, 95, 24);">Project</th>
-                                @can('view', $tasks)
                                 <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
-                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -45,8 +46,8 @@
                                 <td>{{ $task->sprint->format('d/m/Y') }}</td>
                                 <td>{{ $task->priority }}</td>
                                 <td>{{ $task->status }}</td>
-                                <td>{{ $task->developer->name }}</td>
-                                <td>{{ $task->project->name }}</td>
+                                <td>{{ $task->developer ? $task->developer->name : 'N/A' }}</td>
+                                <td>{{ $task->project ? $task->project->name : 'N/A' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         @can('update', $task)
@@ -69,7 +70,7 @@
                 <div class="d-flex justify-content-center">
                     {{ $tasks->links() }}
                 </div>
-                @can('create', $task)
+                @can('create', App\Models\Task::class)
                 <div class="mt-3">
                     <a href="{{ route('tasks.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
                 </div>

@@ -56,7 +56,6 @@
                                             <button type="submit" class="btn btn-danger btn-sm square-btn"><i class="material-icons">delete</i></button>
                                             @endcan
                                         </form>
-                                          
                                     </div>
                                 </td>
                             </tr>

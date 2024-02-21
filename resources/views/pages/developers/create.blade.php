@@ -23,63 +23,63 @@
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter name" value="{{old('name')}}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter name" value="{{ old('name') }}">
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter email" value="{{old('email')}}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter email" value="{{ old('email') }}">
                             @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="github" class="form-label">GitHub</label>
-                            <input type="text" class="form-control @error('github') is-invalid @enderror" id="github" name="github" placeholder="Enter GitHub username" value="{{old('github')}}">
+                            <input type="text" class="form-control @error('github') is-invalid @enderror" id="github" name="github" placeholder="Enter GitHub username" value="{{ old('github') }}">
                             @error('github')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" rows="3" placeholder="Enter bio">{{old('bio')}}</textarea>
+                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" rows="3" placeholder="Enter bio">{{ old('bio') }}</textarea>
                             @error('bio')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="technologies" class="form-label">Technologies</label>
-                            <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies" placeholder="Enter technologies" value="{{old('technologies')}}">
+                            <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies" placeholder="Enter technologies" value="{{ old('technologies') }}">
                             @error('technologies')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="college" class="form-label">college</label>
-                            <input type="text" class="form-control @error('college') is-invalid @enderror" id="college" name="college" placeholder="Enter college" value="{{old('college')}}">
+                            <label for="college" class="form-label">College</label>
+                            <input type="text" class="form-control @error('college') is-invalid @enderror" id="college" name="college" placeholder="Enter college" value="{{ old('college') }}">
                             @error('college')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="course" class="form-label">course</label>
-                            <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" name="course" placeholder="Enter course" value="{{old('course')}}">
+                            <label for="course" class="form-label">Course</label>
+                            <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" name="course" placeholder="Enter course" value="{{ old('course') }}">
                             @error('course')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="certifications" class="form-label">certifications</label>
-                            <input type="text" class="form-control @error('certifications') is-invalid @enderror" id="certifications" name="certifications" placeholder="Enter certifications" value="{{old('certifications')}}">
+                            <label for="certifications" class="form-label">Certifications</label>
+                            <input type="text" class="form-control @error('certifications') is-invalid @enderror" id="certifications" name="certifications" placeholder="Enter certifications" value="{{ old('certifications') }}">
                             @error('certifications')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="company" class="form-label">company</label>
-                            <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" name="company" placeholder="Enter company" value="{{old('company')}}">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" name="company" placeholder="Enter company" value="{{ old('company') }}">
                             @error('company')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -101,27 +101,27 @@
                                 <option value="consultant">Consultant</option>
                             </select>
                             @error('level')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="city" class="form-label">city</label>
-                            <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" placeholder="Enter city" value="{{old('city')}}">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" placeholder="Enter city" value="{{ old('city') }}">
                             @error('city')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="state" class="form-label">state</label>
-                            <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" name="state" placeholder="Enter state" value="{{old('state')}}">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" name="state" placeholder="Enter state" value="{{ old('state') }}">
                             @error('state')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="technologies" class="form-label">country</label>
-                            <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies" placeholder="Enter technologies" value="{{old('technologies')}}">
-                            @error('technologies')
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" name="country" placeholder="Enter country" value="{{ old('country') }}">
+                            @error('country')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

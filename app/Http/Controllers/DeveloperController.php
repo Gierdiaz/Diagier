@@ -8,7 +8,6 @@ use Illuminate\View\View;
 
 class DeveloperController extends Controller
 {
-
     public function index(): View
     {
         $developers = Developer::orderBy('id', 'desc')->paginate(5);
@@ -28,9 +27,8 @@ class DeveloperController extends Controller
 
     public function store(DeveloperFormRequest $request)
     {
-        dd($request);
         Developer::create($request->validated());
-        
+
         return redirect()->route('developers.index');
     }
 

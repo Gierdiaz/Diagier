@@ -3,14 +3,13 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('main.main');
 })->name('main');
 
@@ -23,7 +22,7 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register'])->name('register');
     Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
     Route::post('login', [AuthController::class, 'login'])->name('login');
-   
+
     //TODO: verificar depois
     Route::get('forgot-password', [AuthController::class, 'ForgotPasswordForm'])->name('password.request');
     Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
@@ -38,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
     Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
-   
+
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');
     Route::get('developers/create', [DeveloperController::class, 'create'])->name('developers.create');
@@ -60,8 +59,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Tasks Routes
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
     Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
