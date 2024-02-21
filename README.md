@@ -8,7 +8,13 @@ This is a project for a Project Management System developed with the Laravel fra
 
 - **Access Permissions**: Definition of different levels of access permissions for users, such as administrator, project manager, and team member.
 
+- **Developers**: CRUD operations for Developers, manage developers involved in the projects, including their profiles, skills, availability, and assignments to specific tasks or projects.
+
 - **Projects**: CRUD operations for projects, allowing the creation, viewing, updating, and deletion of projects.
+   
+- **Tasks**: CRUD operations for tasks within each project, allowing complete management of activities related to a project.
+
+- **Feedbacks**: CRUD operations for Feedbacks, provide a mechanism for team members to give and receive feedback on tasks, projects, or overall performance, facilitating continuous improvement and communication within the team.
 
 - **Team Members**: CRUD operations for Team Members, allows administrators to manage team members by adding, removing, or updating information such as name, role, email, etc.
 
@@ -17,12 +23,6 @@ This is a project for a Project Management System developed with the Laravel fra
 - **Documents**: CRUD operations for Documents, enable uploading, viewing, and management of documents related to projects, such as specifications, contracts, spreadsheets, etc.
 
 - **Project Stages**: CRUD operations for Project Stages, divide projects into stages or phases and allow management of these stages, including setting deadlines, assigning responsibilities, and tracking completion status.
-
-- **Tasks**: CRUD operations for tasks within each project, allowing complete management of activities related to a project.
-
-- **Developers**: CRUD operations for Developers, manage developers involved in the projects, including their profiles, skills, availability, and assignments to specific tasks or projects.
-
-- **Feedbacks**: CRUD operations for Feedbacks, provide a mechanism for team members to give and receive feedback on tasks, projects, or overall performance, facilitating continuous improvement and communication within the team.
 
 - **Deadline Management**: Inclusion of fields to set deadlines for projects and tasks, with automatic notifications when deadlines are approaching or overdue.
 
