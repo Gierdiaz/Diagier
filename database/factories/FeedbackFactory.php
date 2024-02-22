@@ -19,14 +19,14 @@ class FeedbackFactory extends Factory
     public function definition(): array
     {
         return [
-            'comment' => $this->faker->text,
-            'reviewer' => $this->faker->name,
+            'comment'     => $this->faker->text,
+            'reviewer'    => $this->faker->name,
             'attachments' => $this->faker->text,
-            'rating' => $this->faker->numberBetween(1, 5),
-            'feedback' => $this->faker->randomElement(['positive', 'negative', 'neutral']),
-            'task_id' => \App\Models\Task::factory(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'rating'      => $this->faker->numberBetween(1, 5),
+            'feedback'    => $this->faker->randomElement(['positive', 'negative', 'neutral']),
+            'task_id'     => \App\Models\Task::factory(),
+            'created_at'  => now(),
+            'updated_at'  => now(),
         ];
     }
 }

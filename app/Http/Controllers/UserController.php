@@ -18,13 +18,13 @@ class UserController extends Controller
     {
         // Validar os dados do formulário
         $request->validate([
-            'access' => 'required|in:admin,regular',
-            'user_access' => 'nullable|in:admin,regular',
+            'access'           => 'required|in:admin,regular',
+            'user_access'      => 'nullable|in:admin,regular',
             'selected_user_id' => 'nullable|exists:users,id',
         ]);
 
         // Atualizar o nível de acesso do usuário atual
-        $user = auth()->user();
+        $user         = auth()->user();
         $user->access = $request->access;
         $user->save();
 

@@ -4,21 +4,21 @@
 <div class="row">
     <div class="col-md-12">     
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mt-5" style="color: rgb(150, 95, 24);">
-                <li class="breadcrumb-item"><a href="/" style="color: rgb(150, 95, 24);">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}" style="color: rgb(150, 95, 24);">Developer</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}" style="color: rgb(150, 95, 24);">Project</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('tasks.index') }}" style="color: rgb(150, 95, 24);">Task</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: rgb(150, 95, 24);">Feedback</a></li>
+            <ol class="breadcrumb mt-5" style="color: #50bcb3;">
+                <li class="breadcrumb-item"><a href="/" style="color: #50bcb3;">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('developers.index') }}" style="color: #50bcb3;">Developer</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('projects.index') }}" style="color: #50bcb3;">Project</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('tasks.index') }}" style="color: #50bcb3;">Task</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: #50bcb3;">Feedback</a></li>
             </ol>
         </nav>
         @if ($projects->isNotEmpty())
-        <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Developer's Projects - {{ $projects->first()->developer ? $projects->first()->developer->name : 'No projects assigned' }} </h2>
+        <h2 class="mt-5 mb-5" style="color: #50bcb3;">Developer's Projects - {{ $projects->first()->developer ? $projects->first()->developer->name : 'No projects assigned' }} </h2>
         @else
-            <h2 class="mt-5 mb-5" style="color: rgb(150, 95, 24);">Developer's Projects - No projects assigned</h2>
+            <h2 class="mt-5 mb-5" style="color: #50bcb3;">Developer's Projects - No projects assigned</h2>
         @endif
         <div class="card">
-            <div class="card-header" style="background-color: rgb(150, 95, 24);">
+            <div class="card-header" style="background-color: #50bcb3;">
                 <h4 class="mb-0 text-black">Projects</h4>
             </div>
             <div class="card-body">
@@ -26,15 +26,15 @@
                     <table class="table table-bordered table-lg">
                         <thead>
                             <tr>
-                                <th scope="col" style="color: rgb(150, 95, 24);">ID</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Name</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Description</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Technologies</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Start Date</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">End Date</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Status</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Developer</th>
-                                <th scope="col" style="color: rgb(150, 95, 24);">Actions</th>
+                                <th scope="col" style="color: #50bcb3;">ID</th>
+                                <th scope="col" style="color: #50bcb3;">Name</th>
+                                <th scope="col" style="color: #50bcb3;">Description</th>
+                                <th scope="col" style="color: #50bcb3;">Technologies</th>
+                                <th scope="col" style="color: #50bcb3;">Start Date</th>
+                                <th scope="col" style="color: #50bcb3;">End Date</th>
+                                <th scope="col" style="color: #50bcb3;">Status</th>
+                                <th scope="col" style="color: #50bcb3;">Developer</th>
+                                <th scope="col" style="color: #50bcb3;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,7 +72,7 @@
                 </div>
                 @can('create', $project)
                 <div class="mt-3">
-                    <a href="{{ route('projects.create') }}" class="btn btn-secondary" style="background-color: rgb(150, 95, 24);">Create</a>
+                    <a href="{{ route('projects.create') }}" class="btn btn-secondary" style="background-color: #50bcb3;">Create</a>
                 </div>
                 @endcan 
             </div>

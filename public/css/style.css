@@ -5,14 +5,6 @@
     font-family: Lora;
 }
 
-body {
-    /*     min-height: 100vh;
-    background: url(img/backgroundHealthy.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; */
-}
-
 #header {
     display: flex;
     justify-content: space-between;
@@ -21,7 +13,6 @@ body {
     position: fixed;
     z-index: 100;
     background: rgb(255, 255, 255, .1);
-    /* background: transparent; */
 }
 
 img {
@@ -32,13 +23,13 @@ img {
     text-decoration: none;
     font-size: 30px;
     font-weight: 700;
-    color: white;
+    color: #50bcb3;
     padding: 70px;
 }
 
 #header .nav-bar a {
     padding: 0 20px 0 10px;
-    color: rgb(150, 95, 24);
+    color: #080a09;
     text-decoration: none;
     font-size: 30px;
     font-weight: 700;
@@ -56,19 +47,19 @@ img {
     left: 0;
     width: 0;
     height: 2px;
-    transition: .5s;
-    background-color: rgb(150, 95, 24);
+    transition: all 0.3s ease 0s;
+
 }
 
-#header .nav-bar a:hover::before {
-    width: 100%;
+#header .nav-bar a:hover {
+    color: #50bcb3;
 }
 
 #container-health h2 {
     margin: 300px 0px 300px 0;
     text-align: center;
     font-size: 40px;
-    color: rgb(150, 95, 24);
+    color: #50bcb3;
 }
 
 /* __Foooter__ */
@@ -78,7 +69,7 @@ img {
     display: flex;
     padding: 80px 8% 70px;
     gap: 3.5rem;
-    background-color: rgb(150, 95, 24);
+    background-color: #b4bbc2;
     overflow: hidden;
 }
 
@@ -116,14 +107,15 @@ img {
 }
 
 #footer .footer-content .icons a i {
-    color: black;
+    color: #424750;
+    ;
     font-size: 35px;
     transition: .9s;
     margin-top: 20px;
 }
 
 #footer .footer-content .icons a:hover i {
-    color: white;
+    color: #50BCB3;
 }
 
 
@@ -133,7 +125,7 @@ img {
     text-align: center;
     width: 100%;
     height: 100%;
-    background-color: rgb(150, 95, 24);
+    background-color: #b4bbc2;
     padding-bottom: 10px;
 
 
@@ -148,16 +140,39 @@ img {
 
 .pagination .page-item .page-link {
     color: #fff;
-    background-color:rgb(150, 95, 24);
-    border-color:rgb(150, 95, 24); 
+    background-color: #50bcb3;
+    border-color: #50bcb3;
 }
 
 .pagination .page-item .page-link:hover {
-    background-color:rgb(150, 95, 24); 
-    border-color:rgb(150, 95, 24); 
+    background-color: #50bcb3;
+    border-color: #50bcb3;
 }
 
 .pagination .page-item.active .page-link {
-    background-color:rgb(150, 95, 24); 
-    border-color:rgb(150, 95, 24);  
+    background-color: #50bcb3;
+    border-color: #50bcb3;
+}
+
+#main-container {
+    position: relative;
+}
+
+#text-container {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 30%;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.highlighted-word {
+    background: linear-gradient(to right, #50bcb3, #b4bbc2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }

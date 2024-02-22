@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DeveloperController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\{
+    AuthController,
+    DeveloperController,
+    FeedbackController,
+    ProjectController,
+    TaskController
+};
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
-
 Route::get('/', function () {
     return view('main.main');
 })->name('main');
@@ -28,15 +29,17 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
     Route::get('reset-password/{token}', [AuthController::class, 'ResetPasswordForm'])->name('password.reset');
     Route::post('reset-password', [AuthController::class, 'reset'])->name('password.update');
-
 });
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', '2fa'])->group(function () {
 
     Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
     Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
+
+    Route::post('/2fa/enable', [AuthController::class, 'enable2fa'])->name('2fa.enable');
+    Route::get('/2fa', [AuthController::class, 'google2fa'])->name('2fa');
 
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');

@@ -19,16 +19,16 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->text(50),
-            'comments' => $this->faker->text,
-            'sprint' => $this->faker->date,
-            'priority' => $this->faker->randomElement(['high', 'medium', 'low']),
-            'status' => $this->faker->randomElement(['to-do', 'progress', 'completed']),
+            'name'         => $this->faker->word,
+            'description'  => $this->faker->text(50),
+            'comments'     => $this->faker->text,
+            'sprint'       => $this->faker->date,
+            'priority'     => $this->faker->randomElement(['high', 'medium', 'low']),
+            'status'       => $this->faker->randomElement(['to-do', 'progress', 'completed']),
             'developer_id' => \App\Models\Developer::factory(),
-            'project_id' => \App\Models\Project::factory(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'project_id'   => \App\Models\Project::factory(),
+            'created_at'   => now(),
+            'updated_at'   => now(),
         ];
     }
 }

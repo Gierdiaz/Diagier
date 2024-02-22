@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FeedbackFormRequest;
-use App\Models\Feedback;
-use App\Models\Task;
+use App\Models\{Feedback, Task};
 use Illuminate\View\View;
 
 class FeedbackController extends Controller
@@ -38,7 +37,7 @@ class FeedbackController extends Controller
     public function edit($feedbacks)
     {
         $feedbacks = Feedback::findOrFail($feedbacks);
-        $tasks = Task::all();
+        $tasks     = Task::all();
 
         return view('pages.feedbacks.edit', compact('feedbacks', 'tasks'));
     }

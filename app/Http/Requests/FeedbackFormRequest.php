@@ -22,12 +22,12 @@ class FeedbackFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment' => ['required', 'string'],
-            'reviewer' => ['required', 'string'],
+            'comment'     => ['required', 'string'],
+            'reviewer'    => ['required', 'string'],
             'attachments' => ['nullable', 'string'],
-            'rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'feedback' => ['required', 'in:positive,negative,neutral'],
-            'task_id' => ['required', 'exists:tasks,id'],
+            'rating'      => ['required', 'integer', 'min:1', 'max:5'],
+            'feedback'    => ['required', 'in:positive,negative,neutral'],
+            'task_id'     => ['required', 'exists:tasks,id'],
         ];
     }
 }

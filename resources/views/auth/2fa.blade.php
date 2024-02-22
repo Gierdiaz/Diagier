@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Diagier</title>
+    <title>Configuração de Autenticação de Dois Fatores</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #000; /* Alterado para preto */
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -19,16 +19,16 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Alterado para preto com transparência */
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: -1;
-            opacity: 0.6; /* Ajuste de opacidade */
+            opacity: 0.6;
         }
 
         .container {
             max-width: 600px;
             margin: 150px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5); /* Alterado para um branco com transparência */
+            background-color: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -79,7 +79,7 @@
             background-color: #564dff;
         }
 
-        .error-message {
+        .invalid-feedback {
             color: #ff0000;
             margin-top: 5px;
         }
@@ -88,53 +88,54 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        /* Style for QR code container */
+        .qr-code-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Style for QR code image */
+        .qr-code-image {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
     <div class="container">
-        <h2>Registrar Usuário</h2>
+        <h2>Configuração de Autenticação de Dois Fatores</h2>
 
-        @if(session('status'))
-            <p>{{ session('status') }}</p>
-        @endif
-
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('2fa.enable') }}">
             @csrf
-        
-            <label for="name">Nome</label>
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-    
-            <label for="email">E-Mail</label>
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-            
-            <label for="password">Senha</label>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-           
-            <label for="password-confirm">Confirmar Senha</label>
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                          
-            <button type="submit" class="btn btn-primary">Registrar</button>
+
+            <div class="form-group">
+                <label for="2fa_code">Código de Autenticação de Dois Fatores:</label>
+                <input id="2fa_code" type="text" class="form-control @error('2fa_code') is-invalid @enderror" name="2fa_code" required autofocus>
+
+                @error('2fa_code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ativar Autenticação de Dois Fatores</button>
         </form>
-        
+
+        <!-- QR Code container -->
+        {{-- <div class="panel-body" style="text-align: center;">
+            <div class="qr-code-container">
+                <img src="{{ $qrCodeUrl }}" alt="QR Code" class="qr-code-image">
+            </div>
+        </div> --}}
+
         <div class="redirect-link">
-            Já possui uma conta? <a href="{{ route('login') }}">Faça login aqui</a>.
+            Já configurou a autenticação de dois fatores? <a href="{{ route('main') }}">Ir para o painel</a>.
         </div>
     </div>
 
@@ -168,7 +169,7 @@
                     }
                 },
                 "opacity": {
-                    "value": 0.8, /* Ajuste de opacidade */
+                    "value": 0.8,
                     "random": false,
                     "anim": {
                         "enable": false,

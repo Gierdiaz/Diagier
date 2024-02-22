@@ -2,8 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Feedback;
-use App\Models\User;
+use App\Models\{Feedback, User};
 
 class FeedbackPolicy
 {

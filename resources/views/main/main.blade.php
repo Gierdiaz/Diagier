@@ -30,11 +30,16 @@
         </nav>
     </header>
 
-    <main style="position: relative;">
-        <img src="{{ asset('img/ti.jpg') }}" alt="Descrição da imagem">
+    <main id="main-container">
+        <div id="text-container">
+            <p>Empower Your Project Management Skills
+                <span class="highlighted-word">Efficiently</span> & Effectively
+                In the World of Technology
+            </p>
+        </div id>
+        <img src="{{ asset('img/ti.jpg') }}">
     </main>
-
-</div>
+    
     <footer id="footer">
         <div  class="row">
             <div class="footer-content col-md">
