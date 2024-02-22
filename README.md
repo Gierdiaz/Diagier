@@ -31,6 +31,8 @@ This is a project for a Project Management System developed with the Laravel fra
 - **User-Friendly Blade Interfaces**: Development of intuitive and user-friendly user interfaces to view and interact with projects and tasks.
 
 - **Project Progress Reports**: Generation of reports on project progress, visually presenting task status and deadline compliance.
+  
+- **Social Authentication with Laravel Socialite**: Integrate Laravel Socialite to allow users to authenticate using popular social media platforms such as Google, Facebook, Twitter, etc., providing a seamless login experience.
 
 ## Additional Development Tools:
 
