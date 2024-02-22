@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectFormRequest;
-use App\Models\Developer;
-use App\Models\Project;
+use App\Models\{Developer, Project};
 use Illuminate\View\View;
 
 class ProjectController extends Controller
@@ -47,7 +46,7 @@ class ProjectController extends Controller
     public function update(ProjectFormRequest $request, $id)
     {
         $project = Project::findOrFail($id);
-        
+
         $project->update($request->validated());
 
         return redirect()->route('projects.index');

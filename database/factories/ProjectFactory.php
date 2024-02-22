@@ -19,17 +19,17 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->text(50),
-            'client' => $this->faker->company,
+            'name'         => $this->faker->word,
+            'description'  => $this->faker->text(50),
+            'client'       => $this->faker->company,
             'technologies' => $this->faker->words(3, true),
-            'start_date' => $this->faker->date,
-            'end_date' => $this->faker->date,
-            'budget' => $this->faker->randomFloat(2, 1000, 100000),
-            'status' => $this->faker->randomElement(['progress', 'completed', 'suspended']),
+            'start_date'   => $this->faker->date,
+            'end_date'     => $this->faker->date,
+            'budget'       => $this->faker->randomFloat(2, 1000, 100000),
+            'status'       => $this->faker->randomElement(['progress', 'completed', 'suspended']),
             'developer_id' => \App\Models\Developer::factory(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at'   => now(),
+            'updated_at'   => now(),
         ];
     }
 }

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Notifications\ResetPasswordNotification;
+use App\Notifications\{ResetPasswordNotification, TwoFactorCodeNotification};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Auth, Hash, Password, Validator};
+use Illuminate\Support\Facades\{Mail, Session};
+use PragmaRX\Google2FAQRCode\Google2FA;
 
 class AuthController extends Controller
 {
@@ -17,24 +16,45 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * Registrar um novo usuário.
-     */
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
+            'name'             => 'required|string',
+            'email'            => 'required|string|email|unique:users',
+            'password'         => 'required|string|confirmed',
+            'google2fa_secret' => 'google2fa_secret',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name'             => $request->name,
+            'email'            => $request->email,
+            'password'         => Hash::make($request->password),
+            'google2fa_secret' => $request->google2fa_secret,
         ]);
 
-        return redirect()->route('login');
+        // Inicializa o Google2FA
+        $google2fa = app(Google2FA::class);
+
+        // Gera um segredo para o usuário
+        $secretKey = $google2fa->generateSecretKey();
+
+        // Armazena os dados do registro na sessão
+        $registration_data                     = $request->all();
+        $registration_data['google2fa_secret'] = $secretKey;
+        Session::put('registration_data', $registration_data);
+
+        // Gera o código de autenticação de dois fatores
+        $twoFactorCode = $google2fa->getCurrentOtp($registration_data['google2fa_secret']);
+
+        // Envia o código por email
+        Mail::to($request->email)->send(new TwoFactorCodeNotification($twoFactorCode));
+
+        return view('auth.2fa', ['secret' => $registration_data['google2fa_secret']]);
+    }
+
+    public function google2fa()
+    {
+        return view('auth.2fa');
     }
 
     public function LoginForm()
@@ -48,12 +68,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|string|email',
+            'email'    => 'required|string|email',
             'password' => 'required|string',
         ]);
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+            $user  = Auth::user();
             $token = $user->createToken('token-name')->plainTextToken;
 
             return redirect()->route('main', ['user' => $user]);
@@ -64,9 +84,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Desconectar o usuário autenticado (logout).
-     */
     public function logout(Request $request)
     {
         Auth::logout();
@@ -76,9 +93,6 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-    /**
-     * Enviar e-mail com link para redefinição de senha.
-     */
     public function forgot(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -99,21 +113,11 @@ class AuthController extends Controller
             : response()->json(['error' => __($status)], 400);
     }
 
-    /**
-     * Exibir formulário para esquecer a senha.
-     *
-     * @return \Illuminate\View\View
-     */
     public function ForgotPasswordForm()
     {
         return view('auth.forgot-password');
     }
 
-    /**
-     * Exibir formulário para redefinir a senha.
-     *
-     * @return \Illuminate\View\View
-     */
     public function ResetPasswordForm(Request $request)
     {
         return view('auth.reset-password', ['request' => $request]);

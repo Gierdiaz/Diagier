@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body style="background-color: #f0f0f0;"> 
+<body style="background-color: ##F7F9F9;"> 
     <div class="container-fluid">
         <div class="row">
             @include('partials.menu')

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskFormRequest;
-use App\Models\Developer;
-use App\Models\Project;
-use App\Models\Task;
+use App\Models\{Developer, Project, Task};
 use Illuminate\View\View;
 
 class TaskController extends Controller
@@ -43,7 +41,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
 
         $developers = Developer::all();
-        
+
         $projects = Project::all();
 
         return view('pages.tasks.edit', compact('task', 'developers', 'projects'));

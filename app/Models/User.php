@@ -11,7 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google2fa_secret',
     ];
 
     /**
@@ -41,7 +44,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password'          => 'hashed',
     ];
 
     public function isAdmin()
@@ -53,4 +56,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Permission::class);
     }
+
+    public function setGoogle2faSecretAttribute($value)
+    {
+        $this->attributes['google2fa_secret'] = encrypt($value);
+    }
+
+    public function getGoogle2faSecretAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function routeNotificationForMail()
+    {
+        return $this->email;
+    }
+
 }

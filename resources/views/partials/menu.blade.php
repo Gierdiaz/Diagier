@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<nav class="navbar navbar-expand-lg" style="background-color: rgb(150, 95, 24); color: white; mb-5">
+<nav class="navbar navbar-expand-lg" style="background-color: #50bcb3; color: white; mb-5">
     <div class="container">
         <a class="navbar-brand text-white" href="{{ route('main') }}">Diagier</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
