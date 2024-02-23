@@ -25,7 +25,7 @@ class AuthController extends Controller
             'google2fa_secret' => 'google2fa_secret',
         ]);
 
-        $user = User::create([
+        User::create([
             'name'             => $request->name,
             'email'            => $request->email,
             'password'         => Hash::make($request->password),
@@ -49,7 +49,13 @@ class AuthController extends Controller
         // Envia o código por email
         Mail::to($request->email)->send(new TwoFactorCodeNotification($twoFactorCode));
 
-        return view('auth.2fa', ['secret' => $registration_data['google2fa_secret']]);
+        $QR_Image = $google2fa->getQRCodeInline(
+            config('app.name'),
+            $registration_data['email'],
+            $registration_data['google2fa_secret']
+        );
+
+        return view('auth.2fa', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
     }
 
     public function google2fa()
@@ -62,9 +68,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Autenticar um usuário.
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([

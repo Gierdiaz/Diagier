@@ -128,11 +128,11 @@
         </form>
 
         <!-- QR Code container -->
-        {{-- <div class="panel-body" style="text-align: center;">
+        <div class="panel-body" style="text-align: center;">
             <div class="qr-code-container">
-                <img src="{{ $qrCodeUrl }}" alt="QR Code" class="qr-code-image">
+                {!! $QR_Image !!}
             </div>
-        </div> --}}
+        </div>
 
         <div class="redirect-link">
             Já configurou a autenticação de dois fatores? <a href="{{ route('main') }}">Ir para o painel</a>.
