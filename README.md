@@ -129,6 +129,12 @@ Start the Apache and MySQL services in the XAMPP control panel.
 ### 9. Access the Application:
 - Access the application in your browser: `http://localhost:8000`
 
+## Resources
+
+- [Google2FA by Antonio Ribeiro](https://github.com/antonioribeiro/google2fa) - Package for two-factor authentication
+- [Laravelia Tutorial: Laravel 9 Google Two-Factor (2FA) Authentication](https://www.laravelia.com/post/laravel-9-google-two-factor-2fa-authentication-tutorial) - Tutorial followed to implement two-factor authentication
+- Mailtrap - Service for testing emails in development environments
+
 ## Contributing
 
 Contributions are welcome! To contribute to this project, follow these steps:
