@@ -117,7 +117,7 @@ Start the Apache and MySQL services in the XAMPP control panel.
 ### 7. Run Database Migrations:
 - Run the database migrations to create the necessary tables:
 ``` bash
-    php artisan migrate
+    php artisan migrate:fresh --seed
 ```
 
 ### 8. Start Local Server:
