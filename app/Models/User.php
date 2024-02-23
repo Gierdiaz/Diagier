@@ -57,19 +57,4 @@ class User extends Authenticatable
         return $this->hasOne(Permission::class);
     }
 
-    public function setGoogle2faSecretAttribute($value)
-    {
-        $this->attributes['google2fa_secret'] = encrypt($value);
-    }
-
-    public function getGoogle2faSecretAttribute($value)
-    {
-        return decrypt($value);
-    }
-
-    public function routeNotificationForMail()
-    {
-        return $this->email;
-    }
-
 }
