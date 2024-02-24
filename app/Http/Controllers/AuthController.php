@@ -33,7 +33,6 @@ class AuthController extends Controller
             'name'             => 'required|string',
             'email'            => 'required|string|email|unique:users',
             'password'         => 'required|string|confirmed',
-            'google2fa_secret' => 'google2fa_secret',
         ]);
 
         if ($validator->fails()) {
@@ -41,10 +40,12 @@ class AuthController extends Controller
         }
 
         try {
+
             User::create([
                 'name'     => $request->name,
                 'email'    => $request->email,
                 'password' => Hash::make($request->password),
+                'google2fa_secret' => $request->google2fa_secret
             ]);
 
             // Initializes Google2FA
