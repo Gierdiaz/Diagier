@@ -54,10 +54,11 @@ return [
      */
     'otp_secret_column' => 'google2fa_secret',
 
+    //TODO: Uma vez isso já deu problema quando era google2fa.index
     /*
      * One Time Password View.
      */
-    'view' => 'google2fa.index',
+    'view' => 'auth.2fa',
 
     /*
      * One Time Password error message.

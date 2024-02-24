@@ -35,7 +35,7 @@
         </form>
 
         <div class="redirect-link">
-            Já configurou a autenticação de dois fatores? <a href="{{ route('login') }}">Ir para o painel</a>.
+            Já configurou a autenticação de dois fatores? <a href="{{ route('login.form') }}">Ir para o painel</a>.
         </div>
     </div>
 
