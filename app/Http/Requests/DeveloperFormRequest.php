@@ -21,8 +21,8 @@ class DeveloperFormRequest extends FormRequest
     {
         return [
             'name'           => 'required|string',
-            'email'          => 'required|email|unique:developers,email',
-            'github'         => 'required|string|unique:developers,github',
+            'email'          => 'required|email',
+            'github'         => 'required|string',
             'bio'            => 'string',
             'technologies'   => 'required|string',
             'college'        => 'required|string',

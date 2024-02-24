@@ -13,8 +13,8 @@ return new class () extends Migration {
         Schema::create('developers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('github')->unique();
+            $table->string('email');
+            $table->string('github');
             $table->text('bio');
             $table->string('technologies');
             $table->string('college');

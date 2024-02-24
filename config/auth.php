@@ -99,6 +99,13 @@ return [
         ],
     ],
 
+    //TODO: Tentativos de login
+    'throttling' => [
+        'enabled'       => true,
+        'decay_minutes' => 1,
+        'max_attempts'  => 5,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
