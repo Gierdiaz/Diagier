@@ -127,15 +127,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="work_mode" class="form-label">Work Mode</label>
+                            <div class="mb-1">Please select your work mode:</div>
                             <select class="form-select @error('work_mode') is-invalid @enderror" id="work_mode" name="work_mode">
-                                <option value="home_office">Home Office</option>
-                                <option value="presential">Presential</option>
-                                <option value="hybrid">Hybrid</option>
+                                <option value="home_office" title="Work from home full-time">Home Office</option>
+                                <option value="presential" title="Work from office full-time">Presential</option>
+                                <option value="hybrid" title="Combination of working from home and office">Hybrid</option>
                             </select>
                             @error('work_mode')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Create Developer</button>
                             <a href="{{ route('developers.index') }}" class="btn btn-secondary">Back</a>

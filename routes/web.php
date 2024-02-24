@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum', '2fa'])->group(function () {
     Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
     Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
 
-    Route::post('/2fa/enable', [AuthController::class, 'enable2fa'])->name('2fa.enable');
+    Route::post('/2fa/enable', [AuthController::class, 'register'])->name('2fa.enable');
     Route::get('/2fa', [AuthController::class, 'google2fa'])->name('2fa');
 
     // Developers Routes
