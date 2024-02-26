@@ -22,8 +22,8 @@
                 <h4 class="mb-0 text-black">Projects</h4>
             </div>
             <div class="card-body">
-                {{-- <livewire:projects.index /> --}}
-                @include('livewire.projects.index')
+                <livewire:projects.index />
+                {{-- @include('livewire.projects.index') --}}
             </div>
         </div>
     </div>
