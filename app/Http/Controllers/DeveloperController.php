@@ -17,7 +17,7 @@ class DeveloperController extends Controller
         try {
             $developers = Developer::orderBy('id', 'desc')->paginate(5);
 
-            return view('livewire.developers.index', compact('developers'));
+            return view('pages.developers.index', compact('developers'));
         } catch (QueryException $exception) {
             return back()->withError('An error occurred while loading developers.');
         }
@@ -38,7 +38,7 @@ class DeveloperController extends Controller
 
     public function create(): View
     {
-        return view('livewire.developers.create');
+        return view('pages.developers.create');
     }
 
     public function store(DeveloperFormRequest $request): RedirectResponse
