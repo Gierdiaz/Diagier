@@ -21,56 +21,55 @@
                 <div class="card-body">
                     <div>
                         <h2>Create Developer</h2>
-                        <form action="{{ route('developers.store') }}" method="POST">
-                            @csrf
+                        <form wire:submit.prevent="store">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model.defer="name" placeholder="Enter name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model="name" placeholder="Enter name">
                                 @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" wire:model.defer="email" placeholder="Enter email">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" wire:model="email" placeholder="Enter email">
                                 @error('email') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="github" class="form-label">GitHub</label>
-                                <input type="text" class="form-control @error('github') is-invalid @enderror" id="github" wire:model.defer="github" placeholder="Enter GitHub username">
+                                <input type="text" class="form-control @error('github') is-invalid @enderror" id="github" wire:model="github" placeholder="Enter GitHub username">
                                 @error('github') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="bio" class="form-label">Bio</label>
-                                <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" wire:model.defer="bio" rows="3" placeholder="Enter bio"></textarea>
+                                <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" wire:model="bio" rows="3" placeholder="Enter bio"></textarea>
                                 @error('bio') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="technologies" class="form-label">Technologies</label>
-                                <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" wire:model.defer="technologies" placeholder="Enter technologies">
+                                <input type="text" class="form-control @error('technologies') is-invalid @enderror" id="technologies" wire:model="technologies" placeholder="Enter technologies">
                                 @error('technologies') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="college" class="form-label">College</label>
-                                <input type="text" class="form-control @error('college') is-invalid @enderror" id="college" wire:model.defer="college" placeholder="Enter college">
+                                <input type="text" class="form-control @error('college') is-invalid @enderror" id="college" wire:model="college" placeholder="Enter college">
                                 @error('college') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="course" class="form-label">Course</label>
-                                <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" wire:model.defer="course" placeholder="Enter course">
+                                <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" wire:model="course" placeholder="Enter course">
                                 @error('course') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="certifications" class="form-label">Certifications</label>
-                                <input type="text" class="form-control @error('certifications') is-invalid @enderror" id="certifications" wire:model.defer="certifications" placeholder="Enter certifications">
+                                <input type="text" class="form-control @error('certifications') is-invalid @enderror" id="certifications" wire:model="certifications" placeholder="Enter certifications">
                                 @error('certifications') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="company" class="form-label">Company</label>
-                                <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" wire:model.defer="company" placeholder="Enter company">
+                                <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" wire:model="company" placeholder="Enter company">
                                 @error('company') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="level" class="form-label">Level</label>
-                                <select class="form-select @error('level') is-invalid @enderror" id="level" wire:model.defer="level">
+                                <select class="form-select @error('level') is-invalid @enderror" id="level" wire:model="level">
                                     <option value="intern">Intern</option>
                                     <option value="junior">Junior</option>
                                     <option value="intermediate">Intermediate</option>
@@ -88,22 +87,22 @@
                             </div>
                             <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
-                                <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" wire:model.defer="city" placeholder="Enter city">
+                                <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" wire:model="city" placeholder="Enter city">
                                 @error('city') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="state" class="form-label">State</label>
-                                <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" wire:model.defer="state" placeholder="Enter state">
+                                <input type="text" class="form-control @error('state') is-invalid @enderror" id="state" wire:model="state" placeholder="Enter state">
                                 @error('state') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="country" class="form-label">Country</label>
-                                <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" wire:model.defer="country" placeholder="Enter country">
+                                <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" wire:model="country" placeholder="Enter country">
                                 @error('country') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="work_mode" class="form-label">Work Mode</label>
-                                <select class="form-select @error('work_mode') is-invalid @enderror" id="work_mode" wire:model.defer="work_mode">
+                                <select class="form-select @error('work_mode') is-invalid @enderror" id="work_mode" wire:model="work_mode">
                                     <option value="home_office" title="Work from home full-time">Home Office</option>
                                     <option value="presential" title="Work from office full-time">Presential</option>
                                     <option value="hybrid" title="Combination of working from home and office">Hybrid</option>
@@ -120,3 +119,6 @@
     </div>
 </div>
 @endsection
+
+@livewireStyles
+@livewireScripts

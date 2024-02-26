@@ -112,7 +112,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user  = Auth::user();
+            $user = Auth::user();
 
             $token = $user->createToken('token-name')->plainTextToken;
 
@@ -121,7 +121,7 @@ class AuthController extends Controller
             return redirect()->route('main', ['user' => $user, 'token' => $token]);
         }
 
-        $this->incrementLoginAttempts($request);
+        //$this->incrementLoginAttempts($request);
 
         return back()->withErrors([
             'email' => 'The credentials provided are incorrect.',

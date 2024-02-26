@@ -17,7 +17,7 @@ class DeveloperController extends Controller
         try {
             $developers = Developer::orderBy('id', 'desc')->paginate(5);
 
-            return view('pages.developers.index', compact('developers'));
+            return view('livewire.developers.index', compact('developers'));
         } catch (QueryException $exception) {
             return back()->withError('An error occurred while loading developers.');
         }
@@ -38,7 +38,7 @@ class DeveloperController extends Controller
 
     public function create(): View
     {
-        return view('pages.developers.create');
+        return view('livewire.developers.create');
     }
 
     public function store(DeveloperFormRequest $request): RedirectResponse
@@ -46,10 +46,10 @@ class DeveloperController extends Controller
         try {
             $this->authorize('create', Developer::class);
 
-            $validatedData            = $request->validated();
-            $validatedData['user_id'] = Auth::id();
+            $validate            = $request->validated();
+            $validate['user_id'] = Auth::id();
 
-            Developer::create($validatedData);
+            Developer::create($validate);
 
             return redirect()->route('developers.index')->with('success', 'Developer created successfully!');
         } catch (QueryException $exception) {
