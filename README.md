@@ -139,19 +139,19 @@ docker run --rm \
 ### 6. Generate Application Key:
 - Generate a new application key:
 ``` bash
-    php artisan key:generate
+    sail artisan key:generate
 ```
 
 ### 7. Run Database Migrations:
 - Run the database migrations to create the necessary tables:
 ``` bash
-    php artisan migrate:fresh --seed
+    sail artisan migrate:fresh --seed
 ```
 
 ### 8. Start Local Server:
 - Start the local server:
 ``` bash
-    php artisan serve
+    sail artisan serve
 ```
 
 ### 9. Access the Application:
