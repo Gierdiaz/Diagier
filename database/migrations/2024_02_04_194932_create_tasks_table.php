@@ -11,15 +11,16 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
             $table->string('name');
             $table->text('description');
             $table->text('comments')->nullable();
             $table->date('sprint')->comment('Delivery time');
             $table->enum('priority', ['high', 'medium', 'low'])->default('medium');
             $table->enum('status', ['to-do', 'progress', 'completed'])->default('to-do');
-            $table->foreignId('developer_id')->constrained('developers');
-            $table->foreignId('project_id')->constrained('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('developer_id')->constrained('developers');
+            $table->foreignUuid('project_id')->constrained('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->softDeletes();
             $table->timestamps();
         });

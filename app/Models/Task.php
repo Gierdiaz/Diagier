@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\{
     Model,
     SoftDeletes
 };
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Task extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $fillable = [
         'id',

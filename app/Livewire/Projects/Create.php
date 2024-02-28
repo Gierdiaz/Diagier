@@ -38,13 +38,6 @@ class Create extends Component
         'developer_id' => 'required|exists:developers,id',
     ];
 
-    public function render()
-    {
-        $developers = Developer::all();
-
-        return view('livewire.projects.create', compact('developers'));
-    }
-
     public function store()
     {
         $validatedData = $this->validate($this->rules);
@@ -62,5 +55,12 @@ class Create extends Component
         }
 
         return redirect()->route('projects.index');
+    }
+
+    public function render()
+    {
+        $developers = Developer::all();
+
+        return view('livewire.projects.create', compact('developers'));
     }
 }

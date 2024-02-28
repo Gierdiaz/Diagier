@@ -25,6 +25,7 @@ class FeedbackFactory extends Factory
             'rating'      => $this->faker->numberBetween(1, 5),
             'feedback'    => $this->faker->randomElement(['positive', 'negative', 'neutral']),
             'task_id'     => \App\Models\Task::factory(),
+            'user_id'     => \App\Models\User::factory(),
             'created_at'  => now(),
             'updated_at'  => now(),
         ];

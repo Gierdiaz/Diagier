@@ -38,6 +38,7 @@ class DeveloperFactory extends Factory
             'work_mode'  => $this->faker->randomElement(['home_office', 'presential', 'hybrid']),
             'created_at' => now(),
             'updated_at' => now(),
+            'user_id'     => \App\Models\User::factory(),
         ];
     }
 }

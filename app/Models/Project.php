@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Project extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $fillable = [
         'id',
@@ -22,6 +24,7 @@ class Project extends Model
         'budget',
         'status',
         'developer_id',
+        'user_id',
     ];
 
     protected $casts = [
