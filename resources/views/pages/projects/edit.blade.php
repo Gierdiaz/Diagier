@@ -19,6 +19,7 @@
                     <h4 class="mb-0 text-black">Edit Project</h4>
                 </div>
                 <div class="card-body">
+                    <livewire:projects.edit />
                 </div>
             </div>
         </div>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Projects;
+namespace App\Livewire\Projects;
 
 use App\Models\{Developer, Project};
 use Livewire\Component;
 
-class Update extends Component
+class Edit extends Component
 {
     public $project;
 
@@ -26,13 +26,6 @@ class Update extends Component
     public $status;
 
     public $developer_id;
-
-    public function render()
-    {
-        $developers = Developer::all();
-
-        return view('livewire.projects.edit', compact('developers'));
-    }
 
     public function mount(Project $project)
     {
@@ -67,5 +60,12 @@ class Update extends Component
         session()->flash('success', 'Project updated successfully!');
 
         return redirect()->route('projects.index');
+    }
+
+    public function render()
+    {
+        $developers = Developer::all();
+
+        return view('livewire.projects.edit', compact('developers'));
     }
 }

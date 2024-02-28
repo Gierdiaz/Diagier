@@ -21,6 +21,7 @@ return new class () extends Migration {
             $table->decimal('budget', 10, 2);
             $table->enum('status', ['progress', 'completed', 'suspended'])->default('progress');
             $table->foreignId('developer_id')->constrained('developers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->softDeletes();
             $table->timestamps();
 

@@ -26,6 +26,18 @@ class Create extends Component
 
     public $developer_id;
 
+    protected $rules = [
+        'name'         => 'required',
+        'description'  => 'required',
+        'client'       => 'required',
+        'technologies' => 'required',
+        'start_date'   => 'required|date',
+        'end_date'     => 'required|date',
+        'budget'       => 'required|numeric',
+        'status'       => 'required|in:progress,completed,suspended',
+        'developer_id' => 'required|exists:developers,id',
+    ];
+
     public function render()
     {
         $developers = Developer::all();
@@ -35,22 +47,19 @@ class Create extends Component
 
     public function store()
     {
-        $validate = $this->validate([
-            'name'         => 'required',
-            'description'  => 'required',
-            'client'       => 'required',
-            'technologies' => 'required',
-            'start_date'   => 'required|date',
-            'end_date'     => 'required|date',
-            'budget'       => 'required|numeric',
-            'status'       => 'required|in:progress,completed,suspended',
-            'developer_id' => 'required|exists:developers,id',
-        ]);
+        $validatedData = $this->validate($this->rules);
 
-        $validate['user_id'] = Auth::id();
-        Project::create($validate);
+        $validatedData['user_id'] = Auth::id();
 
-        session()->flash('success', 'Project created successfully!');
+        try {
+            Project::create($validatedData);
+
+            session()->flash('success', 'Project created successfully!');
+
+            $this->reset();
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to create project: ' . $e->getMessage());
+        }
 
         return redirect()->route('projects.index');
     }
