@@ -23,7 +23,6 @@
             </div>
             <div class="card-body">
                 <livewire:projects.index />
-                {{-- @include('livewire.projects.index') --}}
             </div>
         </div>
     </div>

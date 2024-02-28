@@ -30,9 +30,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'             => 'required|string',
-            'email'            => 'required|string|email|unique:users',
-            'password'         => 'required|string|confirmed',
+            'name'     => 'required|string',
+            'email'    => 'required|string|email|unique:users',
+            'password' => 'required|string|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -42,10 +42,10 @@ class AuthController extends Controller
         try {
 
             User::create([
-                'name'     => $request->name,
-                'email'    => $request->email,
-                'password' => Hash::make($request->password),
-                'google2fa_secret' => $request->google2fa_secret
+                'name'             => $request->name,
+                'email'            => $request->email,
+                'password'         => Hash::make($request->password),
+                'google2fa_secret' => $request->google2fa_secret,
             ]);
 
             // Initializes Google2FA

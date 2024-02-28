@@ -40,8 +40,8 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
-    public function manager(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Manager::class);
+        return $this->belongsTo(User::class);
     }
 }
