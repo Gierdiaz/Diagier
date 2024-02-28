@@ -40,12 +40,12 @@ class Create extends Component
 
     public function store()
     {
-        $validatedData = $this->validate($this->rules);
+        $validate = $this->validate($this->rules);
 
-        $validatedData['user_id'] = Auth::id();
+        $validate['user_id'] = Auth::id();
 
         try {
-            Project::create($validatedData);
+            Project::create($validate);
 
             session()->flash('success', 'Project created successfully!');
 
