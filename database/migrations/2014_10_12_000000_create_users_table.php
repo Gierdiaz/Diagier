@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('access', ['admin', 'regular'])->default('regular')->comment('Permissions table');
+            $table->enum('access', ['admin', 'regular'])->default('regular')->comment('Tabela de permissões');
             $table->rememberToken();
             $table->string('google2fa_secret')->nullable();
             $table->timestamps();

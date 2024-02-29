@@ -47,7 +47,7 @@ class Create extends Component
         try {
             Project::create($validate);
 
-            session()->flash('success', 'Project created successfully!');
+            session()->flas1h('success', 'Project created successfully!');
 
             $this->reset();
         } catch (\Exception $e) {

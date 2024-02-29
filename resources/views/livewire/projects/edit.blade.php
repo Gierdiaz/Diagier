@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="update">
+    <form wire:submit="update">
         <div class="mb-3">
             <label for="name" class="form-label">Project Name</label>
             <input wire:model="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter project name">
