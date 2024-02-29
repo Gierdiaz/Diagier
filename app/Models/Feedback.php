@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Feedback extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $table = 'feedbacks';
 
@@ -21,6 +23,7 @@ class Feedback extends Model
         'rating',
         'feedback',
         'task_id',
+        'user_id',
     ];
 
     public function task(): BelongsTo

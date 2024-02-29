@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('developers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
             $table->string('name');
             $table->string('email');
             $table->string('github');
@@ -40,6 +40,7 @@ return new class () extends Migration {
             $table->string('country');
             $table->enum('work_mode', ['home_office', 'presential', 'hybrid']);
             $table->comment('Developer profiles');
+            $table->foreignUuid('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->softDeletes();
             $table->timestamps();
 

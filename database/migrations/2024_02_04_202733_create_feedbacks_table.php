@@ -11,13 +11,14 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('feedbacks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
             $table->text('comment');
             $table->string('reviewer');
             $table->text('attachments')->nullable();
             $table->integer('rating');
             $table->enum('feedback', ['positive', 'negative', 'neutral'])->default('positive');
-            $table->foreignId('task_id')->constrained('tasks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('task_id')->constrained('tasks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\{
     Model,
     SoftDeletes
 };
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Permission extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $fillable = [
         'name',
         'access',
+        'user_id',
     ];
 
     public function users(): BelongsTo

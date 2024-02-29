@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Developer extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $fillable = [
         'name',
@@ -26,6 +28,7 @@ class Developer extends Model
         'state',
         'country',
         'work_mode',
+        'user_id',
     ];
 
     public function project(): HasOne
