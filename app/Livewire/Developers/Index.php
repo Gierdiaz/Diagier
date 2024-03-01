@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Developers;
+namespace App\Livewire\Developers;
 
 use App\Models\Developer;
 use Livewire\Component;
 
-class DeveloperTable extends Component
+class Index extends Component
 {
     public function render()
     {

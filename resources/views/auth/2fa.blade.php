@@ -13,9 +13,9 @@
     <div class="container">
         <h2>Configuração de Autenticação de Dois Fatores</h2>
 
-        <div class="qr-code-container">
+        {{-- <div class="qr-code-container">
             {!! $QR_Image !!}
-        </div>
+        </div> --}}
         
         <form method="POST" action="{{ route('2fa.enable') }}">
             @csrf

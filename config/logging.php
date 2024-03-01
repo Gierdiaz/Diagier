@@ -124,6 +124,14 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        '2fa' => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/2fa.log'),
+            'level'  => 'debug',
+            'days'   => 2, // Número de dias que os arquivos de log devem ser mantidos
+        ],
+
     ],
 
 ];

@@ -9,6 +9,7 @@ use App\Notifications\{
 };
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\{
     Auth,
     Hash,
@@ -29,49 +30,55 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name'     => 'required|string',
             'email'    => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string|min:3',
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator)->withInput();
         }
 
         try {
 
-            User::create([
-                'name'             => $request->name,
-                'email'            => $request->email,
-                'password'         => Hash::make($request->password),
-                'google2fa_secret' => $request->google2fa_secret,
+            $user = User::create([
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'password' => Hash::make($request->password),
             ]);
 
-            // Initializes Google2FA
+            if (!$user) {
+                throw new \Exception('Error creating user');
+            }
+
+            // Inicializa o Google2FA
             $google2fa = app(Google2FA::class);
 
-            // Generates a secret for the user
+            // Gera uma chave secreta para o usuário
             $secretKey = $google2fa->generateSecretKey();
 
-            // Stores the log data in the session
-            $registration_data                     = $request->all();
-            $registration_data['google2fa_secret'] = $secretKey;
-            Session::put('registration_data', $registration_data);
+            Log::channel('2fa')->info('Secret Key Generated: ' . $secretKey);
+
+            Session::put('google2fa_secret', $secretKey);
 
             // Generates the two-factor authentication code
-            $twoFactorCode = $google2fa->getCurrentOtp($registration_data['google2fa_secret']);
+            $twoFactorCode = $google2fa->getCurrentOtp($secretKey);
+
+            Log::channel('2fa')->info('Two Factor Authentication Code Generated: ' . $twoFactorCode);
 
             // Send the code by email
             Mail::to($request->email)->send(new TwoFactorCodeNotification($twoFactorCode));
 
             $QR_Image = $google2fa->getQRCodeInline(
                 config('app.name'),
-                $registration_data['email'],
-                $registration_data['google2fa_secret']
+                $request->email,
+                $secretKey
             );
 
-            return view('auth.2fa', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+            dd(' aestouqui'); //ele não chega aqui verifica mais em cima
+            return view('auth.2fa', ['QR_Image' => $QR_Image, 'secret' => $secretKey]);
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
         }
