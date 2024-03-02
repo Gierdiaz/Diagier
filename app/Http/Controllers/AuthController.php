@@ -77,6 +77,7 @@ class AuthController extends Controller
                 $secretKey
             );
 
+            //dd();
             return view('auth.2fa', ['QR_Image' => $QR_Image, 'secret' => $secretKey]);
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
