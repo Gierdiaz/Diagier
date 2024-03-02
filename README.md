@@ -52,6 +52,32 @@
 
 - **Data Backup and Restoration**: Implementation of a regular backup system to protect application data against loss or corruption.
 
+## Usage of Livewire
+
+This project extensively utilizes Livewire, a Laravel library that facilitates the creation of interactive user interfaces without the need to write JavaScript code. Livewire combines the simplicity of PHP with the reactivity of JavaScript, enabling the creation of dynamic user interface components efficiently.
+
+### Benefits of Livewire in the Project
+
+- **JavaScript-free Interactivity**: With Livewire, we can create interactive components such as dynamic forms, data filters, and pagination systems without the need to manually write JavaScript code.
+
+- **Ease of Development**: Livewire simplifies the development of complex user interfaces by providing a familiar PHP and Blade-based approach, making it easier to create and maintain components.
+
+- **Enhanced Testability**: Livewire components are easily testable using Livewire's integrated testing framework, ensuring code quality and stability.
+
+- **Seamless Integration with Laravel**: As an official Laravel library, Livewire seamlessly integrates with other Laravel features such as Eloquent models, middleware, and authentication systems.
+
+### How Livewire is Applied in the Project
+
+In the context of this project, Livewire is used to create dynamic and interactive components in various parts of the application, including:
+
+- Forms for creating and editing projects, tasks, and other resources.
+- Data filtering and sorting systems.
+- Pagination components for extensive resource listings.
+- Real-time state updates to reflect changes instantly in the user interface.
+
+These Livewire components help improve the user experience and provide a responsive and fluid user interface without the complexity of traditional JavaScript development.
+
+For more information about Livewire and its documentation, please refer to the [official Livewire website](https://laravel-livewire.com/).
 
 ## Additional Development Tools:
 
@@ -68,36 +94,39 @@
     ./vendor/bin/pest
 ```
 
-## Installation Requirements:
+## How to Install and Run the Project
 
-- [XAMPP](https://www.apachefriends.org/index.html): Development environment that includes Apache, MySQL, PHP, and phpMyAdmin.
-- [Composer](https://getcomposer.org/): PHP dependency manager.
-- [Node.js e NPM](https://nodejs.org/): To compile front-end assets (optional).
+### 1. Install Laravel Sail:
+Make sure you have Docker Desktop installed on your system. You can download it [here](https://www.docker.com/products/docker-desktop).
+Then, navigate to your Laravel project directory and run the following command to install Laravel Sail:
+```bash
+composer require laravel/sail --dev
+```
 
-## How to Install and Run the Project:
+### 2. Initialize Laravel Sail:
+After installing Laravel Sail, initialize it by running the following command in your project directory:
+```bash
+php artisan sail:install
+```
 
-### 1. Install XAMPP:
-- Download [XAMPP](https://www.apachefriends.org/index.html) and follow the installation instructions for your operating system.
-Start the Apache and MySQL services in the XAMPP control panel.
+### 3. Install Composer Dependencies:
+Before starting the containers, install Composer dependencies by running the following Docker command:
 
-### 2. Install Composer:
-- Download and install [Composer](https://getcomposer.org/) ccording to the instructions for your operating system.
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
 
-### 3. Clone the Repository:
-- Clone this repository to the `htdocs` directory within the XAMPP folder:
+```
+
+### 4. Clone the Repository:
+- Clone this repository into the directory where you want to store your project:
 ``` bash
     git clone <REPOSITORY_URL> project-name
 ```
-
-
-### 4. Install PHP Dependencies:
-- Navigate to the project directory:
-
-- Install PHP dependencies with Composer:
-``` bash
-    composer install
-```
-
 
 ### 5. Set Up Environment:
 - Copy the `.env.example` file to `.env`:
@@ -110,20 +139,19 @@ Start the Apache and MySQL services in the XAMPP control panel.
 ### 6. Generate Application Key:
 - Generate a new application key:
 ``` bash
-    php artisan key:generate
+    sail artisan key:generate
 ```
-
 
 ### 7. Run Database Migrations:
 - Run the database migrations to create the necessary tables:
 ``` bash
-    php artisan migrate:fresh --seed
+    sail artisan migrate:fresh --seed
 ```
 
 ### 8. Start Local Server:
 - Start the local server:
 ``` bash
-    php artisan serve
+    sail artisan serve
 ```
 
 ### 9. Access the Application:
