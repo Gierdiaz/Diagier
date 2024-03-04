@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ProjectsTableSeeder::class,
             TasksTableSeeder::class,
             FeedbackTableSeeder::class,
+            DocumentTableSeeder::class,
         ]);
     }
 }

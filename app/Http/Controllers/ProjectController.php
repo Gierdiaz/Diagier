@@ -63,7 +63,7 @@ class ProjectController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit($id): RedirectResponse
     {
         try {
             $project = Project::findOrFail($id);
