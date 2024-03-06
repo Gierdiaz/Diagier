@@ -36,6 +36,7 @@ class Create extends Component
         'budget'       => 'required|numeric',
         'status'       => 'required|in:progress,completed,suspended',
         'developer_id' => 'required|exists:developers,id',
+        'client_id'     => 'required|exists:clients,id',
     ];
 
     public function store()

@@ -74,9 +74,11 @@ class DeveloperController extends Controller
         }
     }
 
-    public function update(DeveloperFormRequest $request, Developer $developer): RedirectResponse
+    public function update(DeveloperFormRequest $request, $id): RedirectResponse
     {
         try {
+            $developer = Developer::findOrFail($id);
+
             $this->authorize('update', $developer);
 
             $developer->update($request->validated());

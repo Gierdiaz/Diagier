@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 class Project extends Model
@@ -24,7 +24,7 @@ class Project extends Model
         'budget',
         'status',
         'developer_id',
-        'user_id',
+        'client_id',
     ];
 
     protected $casts = [
@@ -38,13 +38,9 @@ class Project extends Model
         return $this->belongsTo(Developer::class);
     }
 
-    public function task(): HasMany
+    public function client(): BelongsTo
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsTo(Client::class);
     }
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }

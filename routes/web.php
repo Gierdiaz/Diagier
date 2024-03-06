@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     AuthController,
+    ClientController,
     DeveloperController,
     DocumentController,
     FeedbackController,
@@ -87,4 +88,14 @@ Route::middleware(['auth:sanctum', '2fa'])->group(function () {
     Route::put('/documents/{document}', [DocumentController::class, 'update'])->name('documents.update');
     Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     Route::get('documents/{fileName}', [DocumentController::class, 'download'])->name('documents.download');
+
+    // Client Routes
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
 });
