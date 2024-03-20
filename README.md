@@ -52,33 +52,6 @@
 
 - **Data Backup and Restoration**: Implementation of a regular backup system to protect application data against loss or corruption.
 
-## Usage of Livewire
-
-This project extensively utilizes Livewire, a Laravel library that facilitates the creation of interactive user interfaces without the need to write JavaScript code. Livewire combines the simplicity of PHP with the reactivity of JavaScript, enabling the creation of dynamic user interface components efficiently.
-
-### Benefits of Livewire in the Project
-
-- **JavaScript-free Interactivity**: With Livewire, we can create interactive components such as dynamic forms, data filters, and pagination systems without the need to manually write JavaScript code.
-
-- **Ease of Development**: Livewire simplifies the development of complex user interfaces by providing a familiar PHP and Blade-based approach, making it easier to create and maintain components.
-
-- **Enhanced Testability**: Livewire components are easily testable using Livewire's integrated testing framework, ensuring code quality and stability.
-
-- **Seamless Integration with Laravel**: As an official Laravel library, Livewire seamlessly integrates with other Laravel features such as Eloquent models, middleware, and authentication systems.
-
-### How Livewire is Applied in the Project
-
-In the context of this project, Livewire is used to create dynamic and interactive components in various parts of the application, including:
-
-- Forms for creating and editing projects, tasks, and other resources.
-- Data filtering and sorting systems.
-- Pagination components for extensive resource listings.
-- Real-time state updates to reflect changes instantly in the user interface.
-
-These Livewire components help improve the user experience and provide a responsive and fluid user interface without the complexity of traditional JavaScript development.
-
-For more information about Livewire and its documentation, please refer to the [official Livewire website](https://laravel-livewire.com/).
-
 ## Additional Development Tools:
 
 - **Pint**: Tool for static code analysis that helps identify potential issues and improvements in PHP code.
