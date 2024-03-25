@@ -17,15 +17,15 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->firstName,
-            'surname' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'company' => $this->faker->company,
-            'position' => $this->faker->jobTitle,
-            'phone' => $this->faker->phoneNumber,
+            'name'        => $this->faker->firstName,
+            'surname'     => $this->faker->lastName,
+            'email'       => $this->faker->unique()->safeEmail,
+            'company'     => $this->faker->company,
+            'position'    => $this->faker->jobTitle,
+            'phone'       => $this->faker->phoneNumber,
             'observation' => $this->faker->optional()->realText(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at'  => now(),
+            'updated_at'  => now(),
         ];
     }
 }

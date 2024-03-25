@@ -19,7 +19,69 @@
                     <h4 class="mb-0 text-black">Create Project</h4>
                 </div>
                 <div class="card-body">
-                    <livewire:projects.create />
+                    <form action="{{ route('projects.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" class="form-control" id="name">
+                            @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea name="description" class="form-control" id="description"></textarea>
+                            @error('description') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="client">Client:</label>
+                            <input type="text" name="client" class="form-control" id="client">
+                            @error('client') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="technologies">Technologies:</label>
+                            <input type="text" name="technologies" class="form-control" id="technologies">
+                            @error('technologies') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" name="start_date" class="form-control" id="start_date">
+                            @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" name="end_date" class="form-control" id="end_date">
+                            @error('end_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget:</label>
+                            <input type="number" step="0.01" name="budget" class="form-control" id="budget">
+                            @error('budget') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select name="status" class="form-control" id="status">
+                                <option value="progress">Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="developer_id">Developer:</label>
+                            <select name="developer_id" class="form-control" id="developer_id">
+                                @foreach($developers as $developer)
+                                <option value="{{ $developer->id }}">{{ $developer->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="client_id">Client:</label>
+                            <select name="client_id" class="form-control" id="client_id">
+                                @foreach($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

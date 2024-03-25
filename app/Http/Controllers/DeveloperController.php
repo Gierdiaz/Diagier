@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeveloperFormRequest;
 use App\Models\Developer;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\View\View;
 
 class DeveloperController extends Controller
 {
-    public function index(): View
+    public function index()
     {
         try {
-            $developers = Developer::orderBy('id', 'desc')->paginate(5);
+            $developers = Developer::query()->orderBy('id', 'desc')->paginate(5);
 
             return view('pages.developers.index', compact('developers'));
         } catch (QueryException $exception) {
@@ -23,16 +23,14 @@ class DeveloperController extends Controller
         }
     }
 
-    public function show($id): View
+    public function show(Developer $developer)
     {
         try {
-            $developer = Developer::findOrFail($id);
+            $this->authorize('view', $developer);
 
             return view('pages.developers.show', compact('developer'));
-        } catch (ModelNotFoundException $e) {
-            return back()->withError('Developer not found.');
-        } catch (\Exception $e) {
-            return back()->withError('An error occurred while showing the developer.');
+        } catch (AuthorizationException $exception) {
+            return back()->withError('Unauthorized.');
         }
     }
 
@@ -45,67 +43,57 @@ class DeveloperController extends Controller
     {
         try {
             $this->authorize('create', Developer::class);
-
-            $validate            = $request->validated();
-            $validate['user_id'] = Auth::id();
-
-            Developer::create($validate);
+            $validated = $request->validated();
+            Developer::create($validated);
 
             return redirect()->route('developers.index')->with('success', 'Developer created successfully!');
         } catch (QueryException $exception) {
             return back()->withError('An error occurred while storing developer.');
-        } catch (\Exception $e) {
-            return back()->withError('An error occurred while storing developer.');
         }
     }
 
-    public function edit($id)
+    public function edit(Developer $developer)
     {
         try {
-            $developer = Developer::findOrFail($id);
-
             $this->authorize('update', $developer);
 
             return view('pages.developers.edit', compact('developer'));
-        } catch (ModelNotFoundException $exception) {
-            return back()->withError('Developer not found.');
-        } catch (\Exception $e) {
-            return back()->withError('An error occurred while editing developer.');
+        } catch (AuthorizationException $exception) {
+            return back()->withError('Unauthorized.');
         }
     }
 
-    public function update(DeveloperFormRequest $request, $id): RedirectResponse
+    public function update(DeveloperFormRequest $request, Developer $developer): RedirectResponse
     {
+        DB::beginTransaction();
+
         try {
-            $developer = Developer::findOrFail($id);
-
             $this->authorize('update', $developer);
-
             $developer->update($request->validated());
+            DB::commit();
 
             return redirect()->route('developers.index')->with('success', 'Developer updated successfully!');
         } catch (QueryException $exception) {
-            return back()->withError('An error occurred while updating developer.');
-        } catch (\Exception $e) {
+            DB::rollBack();
+
             return back()->withError('An error occurred while updating developer.');
         }
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Developer $developer)
     {
+        DB::beginTransaction();
+
         try {
-            $developer = Developer::findOrFail($id);
-
             $this->authorize('delete', $developer);
-
             $developer->delete();
+            DB::commit();
 
-            return back()->with('success', 'Developer deleted successfully!');
-        } catch (ModelNotFoundException $exception) {
-            return back()->withError('Developer not found.');
-        } catch (\Exception $e) {
-            return back()->withError('An error occurred while deleting developer.');
+            return redirect()->route('developers.index')->with('success', 'Developer deleted successfully');
+        } catch (QueryException $exception) {
+            DB::rollBack();
+
+            return back()->withError('Failed to delete developer');
         }
     }
-
 }

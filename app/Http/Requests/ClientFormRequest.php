@@ -22,12 +22,12 @@ class ClientFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email',
-            'company' => 'required|string|max:255',
-            'position' => 'nullable|string|max:255',
-            'phone' => 'required|string|max:20',
+            'name'        => 'required|string|max:255',
+            'surname'     => 'required|string|max:255',
+            'email'       => 'required|email',
+            'company'     => 'required|string|max:255',
+            'position'    => 'nullable|string|max:255',
+            'phone'       => 'required|string|max:20',
             'observation' => 'nullable|string',
         ];
     }

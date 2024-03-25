@@ -20,7 +20,6 @@ return new class () extends Migration {
             $table->enum('status', ['to-do', 'progress', 'completed'])->default('to-do');
             $table->foreignUuid('developer_id')->constrained('developers');
             $table->foreignUuid('project_id')->constrained('projects')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignUuid('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->softDeletes();
             $table->timestamps();
         });

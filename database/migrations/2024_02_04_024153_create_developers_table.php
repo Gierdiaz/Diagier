@@ -15,11 +15,11 @@ return new class () extends Migration {
             $table->string('name');
             $table->string('email');
             $table->string('github');
-            $table->text('bio');
+            $table->text('bio')->nullable();
             $table->string('technologies');
             $table->string('college');
             $table->string('course');
-            $table->text('certifications');
+            $table->text('certifications')->nullable();
             $table->string('company');
             $table->enum('level', [
                 'intern',
@@ -39,8 +39,6 @@ return new class () extends Migration {
             $table->string('state');
             $table->string('country');
             $table->enum('work_mode', ['home_office', 'presential', 'hybrid']);
-            $table->comment('Developer profiles');
-            $table->foreignUuid('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->comment('Responsible for the creation of the project');
             $table->softDeletes();
             $table->timestamps();
 

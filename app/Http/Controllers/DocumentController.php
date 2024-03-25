@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DocumentFormRequest;
 use App\Models\Document;
 use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
+use Illuminate\Http\{RedirectResponse, Request};
 use Illuminate\Support\Facades\{Auth, Storage};
 use Illuminate\View\View;
 
@@ -59,7 +58,7 @@ class DocumentController extends Controller
     public function store(DocumentFormRequest $request)
     {
         try {
-            $validate                = $request->validated();
+            $validate = $request->validated();
 
             $validate['uploaded_by'] = Auth::id();
 

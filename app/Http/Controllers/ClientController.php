@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientFormRequest;
 use App\Models\Client;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Requests\ClientFormRequest;
-use Exception;
 
 class ClientController extends Controller
 {
@@ -75,11 +75,11 @@ class ClientController extends Controller
     {
         try {
             $client = Client::findOrFail($id);
-    
+
             $this->authorize('update', $client);
-    
+
             $client->update($request->validated());
-    
+
             return redirect()->route('clients.index')->with('success', 'Client updated successfully!');
         } catch (QueryException $exception) {
             return back()->withError('An error occurred while updating Client.');

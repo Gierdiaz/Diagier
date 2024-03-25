@@ -27,7 +27,6 @@ class TaskFactory extends Factory
             'status'       => $this->faker->randomElement(['to-do', 'progress', 'completed']),
             'developer_id' => \App\Models\Developer::factory(),
             'project_id'   => \App\Models\Project::factory(),
-            'user_id'      => \App\Models\User::factory(),
             'created_at'   => now(),
             'updated_at'   => now(),
         ];

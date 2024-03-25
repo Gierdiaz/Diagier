@@ -28,5 +28,4 @@ class Developer extends Model
         'country',
         'work_mode',
     ];
-
 }

@@ -4,63 +4,101 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskFormRequest;
 use App\Models\{Developer, Project, Task};
-use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $tasks = Task::with(['developer', 'project'])->orderBy('id', 'desc')->paginate(5);
-
-        return view('pages.tasks.index', compact('tasks'));
+        try {
+            $tasks = Task::with(['developer', 'project'])->orderBy('id', 'desc')->paginate(5);
+            return view('pages.tasks.index', compact('tasks'));
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->withError('An error occurred while loading tasks.');
+        }
     }
 
-    public function show()
+    public function show($taskId)
     {
-        //
-    }
+        try {
+            $task = Task::with(['developer', 'project'])->findOrFail($taskId);
+            return view('pages.tasks.show', compact('task'));
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->withError('An error occurred while loading the task.');
+        }
+    }    
 
-    public function create(): View
+    public function create()
     {
-        $developers = Developer::all();
-
-        $projects = Project::all();
-
-        return view('pages.tasks.create', compact('developers', 'projects'));
+        try {
+            $developers = Developer::all();
+            $projects = Project::all();
+            return view('pages.tasks.create', compact('developers', 'projects'));
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->withError('An error occurred while loading the create page.');
+        }
     }
+    
 
     public function store(TaskFormRequest $request)
     {
-        Task::create($request->validated());
-
-        return redirect()->route('tasks.index');
+        DB::beginTransaction();
+        try {
+            Task::create($request->validated());
+            DB::commit();
+            return redirect()->route('tasks.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e);
+            return back()->withError('An error occurred while storing the task.');
+        }
     }
 
-    public function edit($id)
+    public function edit($taskId)
     {
-        $task = Task::findOrFail($id);
-
-        $developers = Developer::all();
-
-        $projects = Project::all();
-
-        return view('pages.tasks.edit', compact('task', 'developers', 'projects'));
+        try {
+            $task = Task::findOrFail($taskId);
+            $developers = Developer::all();
+            $projects = Project::all();
+            return view('pages.tasks.edit', compact('task', 'developers', 'projects'));
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->withError('An error occurred while loading the edit page.');
+        }
     }
 
-    public function update(TaskFormRequest $request, $id)
+    public function update(TaskFormRequest $request, $taskId)
     {
-        $task = Task::findOrFail($id);
-        $task->update($request->validated());
-
-        return redirect()->route('tasks.index');
+        DB::beginTransaction();
+        try {
+            $task = Task::findOrFail($taskId);
+            $task->update($request->validated());
+            DB::commit();
+            return redirect()->route('tasks.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e);
+            return back()->withError('An error occurred while updating the task.');
+        }
     }
 
-    public function destroy(Task $task)
+
+    public function destroy($taskId)
     {
-        $this->authorize('delete', $task);
-
-        $task->delete();
-
-        return redirect()->route('tasks.index');
+        DB::beginTransaction();
+        try {
+            $task = Task::findOrFail($taskId);
+            $task->delete();
+            DB::commit();
+            return redirect()->route('tasks.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e);
+            return back()->withError('An error occurred while deleting the task.');
+        }
     }
 }
