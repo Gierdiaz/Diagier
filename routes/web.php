@@ -26,6 +26,9 @@ Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
     Route::post('login', [AuthController::class, 'login'])->name('login');
 
+    Route::post('2fa/enable', [AuthController::class, 'register'])->name('2fa.enable');
+    Route::get('2fa', [AuthController::class, 'google2fa'])->name('2fa');
+
     //TODO: verificar depois
     Route::get('forgot-password', [AuthController::class, 'ForgotPasswordForm'])->name('password.request');
     Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
@@ -39,9 +42,6 @@ Route::middleware(['auth:sanctum', '2fa'])->group(function () {
 
     Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
     Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
-
-    Route::post('2fa/enable', [AuthController::class, 'register'])->name('2fa.enable');
-    Route::get('2fa', [AuthController::class, 'google2fa'])->name('2fa');
 
     // Developers Routes
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');

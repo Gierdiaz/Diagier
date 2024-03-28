@@ -28,6 +28,11 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function google2fa()
+    {
+        return view('auth.2fa');
+    }
+
     public function register(Request $request)
     {
 
@@ -82,11 +87,6 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
         }
-    }
-
-    public function google2fa()
-    {
-        return view('auth.2fa');
     }
 
     public function LoginForm()
