@@ -8,18 +8,19 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+
+            <div>
                 <label for="email">E-mail</label>
-                <input type="email" name="email" value="{{ old('email') }}" required>
-                @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <input type="email" name="email" value="{{ old('email') }}" >
+                <x-input-error :errorMessages="$errors->get('email')" />
+            </div>
 
-
+            <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" required>
-                @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <input type="password" name="password" >
+                <x-input-error :errorMessages="$errors->get('password')" />
+            </div>
+
             <button type="submit">Login</button>
         </form>
 
