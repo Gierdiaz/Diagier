@@ -1,61 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Diagier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div id="particles-js"></div>
+<x-sign-layout>
 
-    <div class="container">
-        <h2>Register User</h2>
+    @if(session('status'))
+    <p>{{ session('status') }}</p>
+    @endif
 
-        @if(session('status'))
-            <p>{{ session('status') }}</p>
-        @endif
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-        
-            <label for="name">Name</label>
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-    
-            <label for="email">E-Mail</label>
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-            
-            <label for="password">Password</label>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-           
-            <label for="password-confirm">Confirm Password</label>
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                          
-            <button type="submit" class="btn btn-primary">Registrar</button>
-        </form>
-        
-        <div class="redirect-link">
-            Already have an account?<a href="{{ route('login') }}"> Log in here</a>.
+        <div class="flex justify-center">
+            <img src="/img/logo-dark.png" alt="Diagier Logo">
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="{{ asset('js/particles.js') }}"></script>
-</body>
-</html>
+        <!-- Inputs Wrapper -->
+        <div class="flex flex-col gap-2 my-6">
+
+            <!-- Name Input -->
+            <div class="flex flex-col gap-2">
+                <label for="name" class="cursor-pointer" class="cursor-pointer">Nome *</label>
+                <input id="name" class="bg-transparent border-2 border-black rounded-lg px-4 py-1 focus:ring-4 focus:ring-blue-400" type="text" name="name" value="{{ old('name') }}" autocomplete="name" autofocus required>
+                <x-input-error :errorMessages="$errors->get('name')" />
+            </div>
+
+            <!-- Email Input -->
+            <div class="flex flex-col gap-2">
+                <label for="email" class="cursor-pointer">E-Mail *</label>
+                <input id="email" class="bg-transparent border-2 border-black rounded-lg px-4 py-1 focus:ring-4 focus:ring-blue-400" type="email" name="email" value="{{ old('email') }}" autocomplete="email" required>
+                <x-input-error :errorMessages="$errors->get('email')" />
+            </div>
+
+            <!-- Password Input -->
+            <div class="flex flex-col gap-2">
+                <label for="password" class="cursor-pointer">Senha *</label>
+                <input id="password" class="bg-transparent border-2 border-black rounded-lg px-4 py-1 focus:ring-4 focus:ring-blue-400" type="password" name="password" autocomplete="new-password" required>
+                <x-input-error :errorMessages="$errors->get('password')" />
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="flex flex-col gap-2">
+                <label for="password-confirm" class="cursor-pointer">Confirmar Senha *</label>
+                <input id="password-confirm" class="bg-transparent border-2 border-black rounded-lg px-4 py-1 focus:ring-4 focus:ring-blue-400" type="password" name="password_confirmation" autocomplete="new-password" required>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-neutral-900 text-neutral-100 py-3 w-full rounded-lg transition-colors hover:bg-neutral-700 focus:ring-4 focus:ring-blue-400">Registrar</button>
+    </form>
+
+    <div class="flex flex-col items-center gap-2 mt-6">
+        <span>
+            Já possui conta?
+            <a href="{{ route('login') }}" class="underline font-medium">Faça Login.</a>
+        </span>
+    </div>
+</x-sign-layout>
