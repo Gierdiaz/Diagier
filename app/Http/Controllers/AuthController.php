@@ -5,21 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Notifications\{
     ResetPasswordNotification,
-    TwoFactorCodeNotification
 };
-use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\{
     Auth,
     Hash,
-    Mail,
     Password,
-    Session,
     Validator
 };
-use Illuminate\Support\Str;
-use PragmaRX\Google2FAQRCode\Google2FA;
 
 class AuthController extends Controller
 {
