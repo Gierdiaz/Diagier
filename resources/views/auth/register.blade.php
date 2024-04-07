@@ -9,6 +9,7 @@
 
         <div class="flex justify-center">
             <img src="/img/logo-dark.png" alt="Diagier Logo">
+            
         </div>
 
         <!-- Inputs Wrapper -->

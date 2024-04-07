@@ -23,15 +23,6 @@ use PragmaRX\Google2FAQRCode\Google2FA;
 
 class AuthController extends Controller
 {
-    public function RegistrationForm()
-    {
-        return view('auth.register');
-    }
-
-    public function google2fa()
-    {
-        return view('auth.2fa');
-    }
 
     public function register(Request $request)
     {
@@ -58,52 +49,11 @@ class AuthController extends Controller
                 throw new \Exception('Error creating user');
             }
 
-            // Inicializa o Google2FA
-            $google2fa = app(Google2FA::class);
+            return view('auth.login');
 
-            // Gera uma chave secreta para o usuário
-            $secretKey = $google2fa->generateSecretKey();
-
-            Log::channel('2fa')->info('Secret Key Generated: ' . $secretKey);
-
-            Session::put('google2fa_secret', $secretKey);
-
-            // Generates the two-factor authentication code
-            $twoFactorCode = $google2fa->getCurrentOtp($secretKey);
-
-            Log::channel('2fa')->info('Two Factor Authentication Code Generated: ' . $twoFactorCode);
-
-            // Send the code by email
-            Mail::to($request->email)->send(new TwoFactorCodeNotification($twoFactorCode));
-
-            $QR_Image = $google2fa->getQRCodeInline(
-                config('app.name'),
-                $request->email,
-                $secretKey
-            );
-
-            //dd();
-            return view('auth.2fa', ['QR_Image' => $QR_Image, 'secret' => $secretKey]);
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
         }
-    }
-
-    public function LoginForm()
-    {
-        return view('auth.login');
-    }
-
-    protected function clearLoginAttempts(Request $request)
-    {
-        $limiter = app(RateLimiter::class);
-
-        $limiter->clear($this->throttleKey($request));
-    }
-
-    protected function throttleKey(Request $request)
-    {
-        return Str::lower($request->input('email')) . '|' . $request->ip();
     }
 
     public function login(Request $request)
@@ -129,11 +79,19 @@ class AuthController extends Controller
             return redirect()->route('main', ['user' => $user, 'token' => $token]);
         }
 
-        //$this->incrementLoginAttempts($request);
-
         return back()->withErrors([
             'email' => 'The credentials provided are incorrect.',
         ]);
+    }
+
+    public function RegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    public function LoginForm()
+    {
+        return view('auth.login');
     }
 
     public function logout(Request $request)
