@@ -21,24 +21,23 @@ Route::get('/maintenance', function () {
 })->name('wait');
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [AuthController::class, 'RegistrationForm'])->name('register.form');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
-    Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
 
-    Route::post('2fa/enable', [AuthController::class, 'register'])->name('2fa.enable');
-    Route::get('2fa', [AuthController::class, 'google2fa'])->name('2fa');
-
-    //TODO: verificar depois
-    Route::get('forgot-password', [AuthController::class, 'ForgotPasswordForm'])->name('password.request');
-    Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
-    Route::get('reset-password/{token}', [AuthController::class, 'ResetPasswordForm'])->name('password.reset');
-    Route::post('reset-password', [AuthController::class, 'reset'])->name('password.update');
 });
+
+Route::get('register', [AuthController::class, 'RegistrationForm'])->name('register.form');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::get('login', [AuthController::class, 'LoginForm'])->name('login.form');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+//TODO: verificar depois
+Route::get('forgot-password', [AuthController::class, 'ForgotPasswordForm'])->name('password.request');
+Route::post('forgot-password', [AuthController::class, 'forgot'])->name('forgot');
+Route::get('reset-password/{token}', [AuthController::class, 'ResetPasswordForm'])->name('password.reset');
+Route::post('reset-password', [AuthController::class, 'reset'])->name('password.update');
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::middleware(['auth:sanctum', '2fa'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/settings', 'App\Http\Controllers\UserController@index')->name('settings');
     Route::put('/settings', 'App\Http\Controllers\UserController@update')->name('settings.update');
