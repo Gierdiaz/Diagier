@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Login;
 use App\Notifications\{
     ResetPasswordNotification,
 };
@@ -16,7 +17,6 @@ use Illuminate\Support\Facades\{
 
 class AuthController extends Controller
 {
-
     public function register(Request $request)
     {
 
@@ -38,11 +38,11 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            if (!$user) {
+            if (! $user) {
                 throw new \Exception('Error creating user');
             }
 
-            return view('auth.login');
+            return redirect('login');
 
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
@@ -67,7 +67,7 @@ class AuthController extends Controller
 
             $token = $user->createToken('token-name')->plainTextToken;
 
-            $this->clearLoginAttempts($request);
+            // $this->clearLoginAttempts($request);
 
             return redirect()->route('main', ['user' => $user, 'token' => $token]);
         }
