@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     DocumentController,
     FeedbackController,
     ProjectController,
-    TaskController
+    TaskController,
+    DashboardController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -96,5 +97,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
     Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
     Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'returnDashboard'])->name('dashboard.returndashboard');
 
 });
