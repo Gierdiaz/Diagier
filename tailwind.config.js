@@ -20,6 +20,11 @@ export default {
             screens: {
                 "custom-xl": "1200px",
             },
+            colors: {
+                main: {
+                    400: "#4EA2A5",
+                },
+            },
         },
     },
     plugins: [],
