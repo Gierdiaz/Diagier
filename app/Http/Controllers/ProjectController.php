@@ -14,10 +14,11 @@ class ProjectController extends Controller
     public function index(): View
     {
         try {
-            $projects = Project::query()
-                ->with('developer', 'client')
-                ->orderBy('id', 'desc')
-                ->paginate(5);
+            $projects = Project::join('developers','projects.developer_id','=','developers.id')
+            ->join('clients','projects.client_id','=','clients.id')
+            ->select('projects.*','clients.name as client')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
             return view('pages.projects.index', compact('projects'));
         } catch (QueryException $exception) {
