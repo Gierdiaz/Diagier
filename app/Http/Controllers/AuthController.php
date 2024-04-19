@@ -67,7 +67,7 @@ class AuthController extends Controller
 
             $token = $user->createToken('token-name')->plainTextToken;
 
-            $this->clearLoginAttempts($request);
+            //$this->clearLoginAttempts($request);
 
             return redirect()->route('main', ['user' => $user, 'token' => $token]);
         }

@@ -91,11 +91,10 @@ class Dashboard extends Model
 
         $data['Projects'] = Project::count();
         $data['tasks']    = Task::count();
-        $data['collabs']    = Developer::count();
-        $data['clients']    = Client::count();
-        $data['stakes']    = Developer::count();
+        $data['collabs']  = Developer::count();
+        $data['clients']  = Client::count();
+        $data['stakes']   = Developer::count();
 
-        //dd($data['stakeholdersByProject'] );
         return $data;
     }
 
