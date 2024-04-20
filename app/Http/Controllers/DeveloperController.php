@@ -41,13 +41,15 @@ class DeveloperController extends Controller
 
     public function store(DeveloperFormRequest $request): RedirectResponse
     {
+        DB::beginTransaction();
         try {
             $this->authorize('create', Developer::class);
             $validated = $request->validated();
             Developer::create($validated);
-
+            DB::commit();
             return redirect()->route('developers.index')->with('success', 'Developer created successfully!');
         } catch (QueryException $exception) {
+            DB::rollBack();
             return back()->withError('An error occurred while storing developer.');
         }
     }

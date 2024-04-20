@@ -14,20 +14,20 @@ class DeveloperFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'           => 'required|string',
-            'email'          => 'required|email',
-            'github'         => 'required|string',
-            'bio'            => 'nullable', 'string',
-            'technologies'   => 'required|string',
-            'college'        => 'required|string',
-            'course'         => 'required|string',
-            'certifications' => 'nullable', 'string',
-            'company'        => 'required|string',
-            'level'          => 'required|in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant',
-            'city'           => 'required|string',
-            'state'          => 'required|string',
-            'country'        => 'required|string',
-            'work_mode'      => 'required|in:home_office,presential,hybrid',
+            'name'           => ['required', 'string'],
+            'email'          => ['required', 'email'],
+            'github'         => ['required','string'],
+            'bio'            => ['nullable', 'string'],
+            'technologies'   => ['required','string'],
+            'college'        => ['required','string'],
+            'course'         => ['required','string'],
+            'certifications' => ['nullable', 'string'],
+            'company'        => ['required','string'],
+            'level'          => ['required','in:intern,junior,intermediate,senior,lead,manager,director,vp,executive,admin,specialist,consultant'],
+            'city'           => ['required','string'],
+            'state'          => ['required','string'],
+            'country'        => ['required','string'],
+            'work_mode'      => ['required','in:home_office,presential,hybrid'],
         ];
     }
 }
