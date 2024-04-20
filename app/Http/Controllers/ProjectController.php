@@ -64,7 +64,7 @@ class ProjectController extends Controller
         }
     }
 
-    public function edit(Project $project): View
+    public function edit(Project $project)
     {
         try {
             $developers = Developer::all();

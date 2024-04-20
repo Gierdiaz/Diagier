@@ -13,13 +13,84 @@
                     <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: #50bcb3;">Feedback</a></li>
                 </ol>
             </nav>
-            <h2 class="mt-5 mb-5">Edit Project</h2>
             <div class="card">
                 <div class="card-header bg-blue">
-                    <h4 class="mb-0 text-black">Edit Project</h4>
+                    <h4 class="mb-0 text-black">Edit Project {{ $project->name }}</h4>
                 </div>
                 <div class="card-body">
-                    <livewire:projects.edit />
+                    <form action="{{ route('projects.update', $project->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" class="form-control" id="name" value={{ $project->name }}>
+                            @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea name="description" class="form-control" id="description" value={{ $project->description }}></textarea>
+                            @error('description') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="client">Client:</label>
+                            <input type="text" name="client" class="form-control" id="client" value={{ $project->client }}>
+                            @error('client') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="technologies">Technologies:</label>
+                            <input type="text" name="technologies" class="form-control" id="technologies" value={{ $project->technologies }}>
+                            @error('technologies') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" name="start_date" class="form-control" id="start_date" value={{ $project->start_date }}>
+                            @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" name="end_date" class="form-control" id="end_date" value={{ $project->end_date }}>
+                            @error('end_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget:</label>
+                            <input type="number" step="0.01" name="budget" class="form-control" id="budget" value={{ $project->budget }}>
+                            @error('budget') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                                <select name="status" class="form-control" id="status">
+                                    @foreach(['progress','completed','suspended'] as $status)
+                                        <option value="{{ $status }}" {{ $project->status == $status ? 'selected' : '' }}>
+                                            {{ str_replace('_', ' ', ucfirst($status)) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                    @error('status')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="developer_id">Developer:</label>
+                            <select name="developer_id" class="form-control" id="developer_id">
+                                @foreach($developers as $developer)
+                                <option value="{{ $developer->id }}">{{ $developer->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="client_id">Client:</label>
+                            <select name="client_id" class="form-control" id="client_id">
+                                @foreach($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Update Developer</button>
+                            <a href="{{ route('projects.index') }}" class="btn btn-secondary">Back</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

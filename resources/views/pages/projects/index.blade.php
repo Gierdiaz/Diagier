@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">     
+        <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mt-5">
                     <li class="breadcrumb-item"><a href="/" style="color: #50bcb3;">Home</a></li>
@@ -51,16 +51,16 @@
                                             <td>{{ $project->status }}</td>
                                             <td style="text-align: center;">
                                                 <div>
-                                                    <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-outline-primary btn-sm rounded-circle mr-2"><i class="material-icons">edit</i></a>
+                                                    <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="btn btn-outline-primary btn-sm rounded-circle mr-2"><i class="material-icons">edit</i></a>
                                                     <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display: inline;">
                                                         @csrf
-                                                        @method('DELETE') 
+                                                        @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle ml-2"><i class="material-icons">delete</i></button>
                                                     </form>
-                                                </div>           
+                                                </div>
                                             </td>
                                         </tr>
-                                        @endforeach    
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -70,7 +70,7 @@
                             <div class="mt-3">
                                 <a href="{{ route('projects.create') }}" class="btn btn-secondary" style="background-color: #50bcb3;">Create Project</a>
                             </div>
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>
