@@ -40,9 +40,13 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        @php
+                            $date_ = date("Y-m-d", strtotime($task->sprint));
+                        @endphp
                         <div class="mb-3">
                             <label for="sprint" class="form-label">Sprint</label>
-                            <input type="date" class="form-control @error('sprint') is-invalid @enderror" id="sprint" name="sprint" value="{{ $task->sprint }}">
+                            <input type="date" class="form-control @error('sprint') is-invalid @enderror" id="sprint" name="sprint" value="@php echo $date_ ; @endphp">
+
                             @error('sprint')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

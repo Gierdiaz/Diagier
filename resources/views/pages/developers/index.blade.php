@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">     
+        <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mt-5">
                     <li class="breadcrumb-item"><a href="/" style="color: #50bcb3;">Home</a></li>
@@ -51,14 +51,14 @@
                                                     @can('delete', $developer)
                                                     <form action="{{ route('developers.destroy', $developer->id) }}" method="POST" style="display: inline;">
                                                         @csrf
-                                                        @method('DELETE') 
+                                                        @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle ml-2"><i class="material-icons">delete</i></button>
                                                     </form>
                                                     @endcan
-                                                </div>           
+                                                </div>
                                             </td>
                                         </tr>
-                                        @endforeach    
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -70,7 +70,7 @@
                                 <a href="{{ route('developers.create') }}" class="btn btn-secondary" style="background-color: #50bcb3;">Create</a>
                             </div>
                             @endcan
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>

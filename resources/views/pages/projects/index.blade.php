@@ -1,9 +1,11 @@
 @extends('layout.layout')
 
 @section('content')
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <!--
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mt-5">
                     <li class="breadcrumb-item"><a href="/" style="color: #50bcb3;">Home</a></li>
@@ -13,11 +15,15 @@
                     <li class="breadcrumb-item"><a href="{{ route('feedbacks.index') }}" style="color: #50bcb3;">Feedback</a></li>
                 </ol>
             </nav>
-            <h2 class="mt-5 mb-5">Projects</h2>
+        -->
+
+            <!--<h2 class="mt-5 mb-5">Projects</h2>-->
             <div class="card">
-                <div class="card-header" style="background-color: #50bcb3;">
-                    <h4 class="mb-0 text-black">Projects</h4>
+                <div class="card-header" style="background-color: #06b6d4; flex-direction:row;">
+                    <div style="float:left;"><h4 class="mb-0 text-black">Projects</h4></div>
+                    <div style="background-color: #06b6d4; margin-left:90%; "><a href="{{ route('projects.create') }}" class="btn btn-secondary">Create Project</a></div>
                 </div>
+
                 <div class="card-body">
                     <div class="table-responsive" id="projects-table">
                         <div>
@@ -49,14 +55,18 @@
                                             <td>{{ $project->end_date }}</td>
                                             <td>{{ $project->budget }}</td>
                                             <td>{{ $project->status }}</td>
-                                            <td style="text-align: center;">
-                                                <div>
-                                                    <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="btn btn-outline-primary btn-sm rounded-circle mr-2"><i class="material-icons">edit</i></a>
-                                                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle ml-2"><i class="material-icons">delete</i></button>
-                                                    </form>
+                                            <td width="7%">
+                                                <div style="flex-direction:row; display:flex; width:7%;">
+                                                    <div>
+                                                      <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="btn btn-outline-primary btn-sm rounded-circle mr-2"><i class="material-icons">edit</i></a>
+                                                    </div>
+                                                    <div>
+                                                        <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle ml-2"><i class="material-icons">delete</i></button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -66,9 +76,6 @@
                             </div>
                             <div  class="d-flex justify-content-center">
                                 {{ $projects->links() }}
-                            </div>
-                            <div class="mt-3">
-                                <a href="{{ route('projects.create') }}" class="btn btn-secondary" style="background-color: #50bcb3;">Create Project</a>
                             </div>
                         </div>
                     </div>
