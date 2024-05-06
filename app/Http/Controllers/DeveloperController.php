@@ -15,7 +15,7 @@ class DeveloperController extends Controller
     public function index()
     {
         try {
-            $developers = Developer::query()->orderBy('id', 'desc')->paginate(5);
+            $developers = Developer::query()->orderBy('id', 'desc')->paginate(12);
 
             return view('pages.developers.index', compact('developers'));
         } catch (QueryException $exception) {
