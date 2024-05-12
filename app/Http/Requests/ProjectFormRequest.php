@@ -31,7 +31,6 @@ class ProjectFormRequest extends FormRequest
             'budget'       => ['required', 'numeric', 'min:0'],
             'status'       => ['required', 'in:progress,completed,suspended'],
             'developer_id' => ['required', 'exists:developers,id'],
-            'client_id'    => ['required', 'exists:clients,id'],
         ];
     }
 }

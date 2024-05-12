@@ -14,7 +14,6 @@ class Project extends Model
     use HasUuids;
 
     protected $fillable = [
-        'id',
         'name',
         'description',
         'client',
@@ -22,9 +21,7 @@ class Project extends Model
         'start_date',
         'end_date',
         'budget',
-        'status',
-        'developer_id',
-        'client_id',
+        'status'
     ];
 
     protected $casts = [
@@ -33,9 +30,9 @@ class Project extends Model
         'budget'     => 'decimal:2',
     ];
 
-    public function developers(): BelongsTo
+    public function developers()
     {
-        return $this->belongsTo(Developer::class);
+        return $this->belongsToMany(Developer::class);
     }
 
     public function client(): BelongsTo

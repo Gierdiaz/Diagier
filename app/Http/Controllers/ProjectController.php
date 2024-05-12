@@ -8,6 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\View\View;
+use App\Models\ProjectsEmployees;
 
 class ProjectController extends Controller
 {
@@ -53,13 +54,29 @@ class ProjectController extends Controller
 
         try {
             $validated = $request->validated();
-            Project::create($validated);
+
+            //dd($validated);
+
+            $project   = Project::create(['name' => $validated["name"],
+                                          'description' => $validated["description"],
+                                          'client' => $validated["client"],
+                                          'technologies' => $validated["technologies"],
+                                          'start_date' => $validated["start_date"],
+                                          'end_date' => $validated["end_date"],
+                                          'budget' => $validated["budget"],
+                                          'status' => $validated["status"]]);
+            
+            for($i = 0; $i < count($validated["developer_id"]); $i++){
+                ProjectsEmployees::create([$project['id'],
+                                           $validated["developer_id"][$i]]);
+            }
+
             DB::commit();
 
             return redirect()->route('projects.index')->with('success', 'Project created successfully!');
         } catch (QueryException $exception) {
             DB::rollBack();
-
+            dd($exception);
             return back()->withError('An error occurred while storing project.');
         }
     }

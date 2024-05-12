@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             TasksTableSeeder::class,
             FeedbackTableSeeder::class,
             DocumentTableSeeder::class,
-
+            ProjectsDevelopersTableSeeder::class
         ]);
     }
 }

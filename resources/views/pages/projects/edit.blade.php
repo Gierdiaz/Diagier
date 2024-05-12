@@ -71,20 +71,13 @@
                         </div>
                         <div class="form-group">
                             <label for="developer_id">Developer:</label>
-                            <select name="developer_id" class="form-control" id="developer_id">
+                            <select name="developer_id[]" class="form-select" id="developer_id" multiple>
                                 @foreach($developers as $developer)
-                                <option value="{{ $developer->id }}">{{ $developer->name }}</option>
+                                    <option value="{{ $developer->id }}">{{ $developer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="client_id">Client:</label>
-                            <select name="client_id" class="form-control" id="client_id">
-                                @foreach($clients as $client)
-                                <option value="{{ $client->id }}">{{ $client->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Update Developer</button>
@@ -96,4 +89,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#developer_id').select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+    closeOnSelect: false,
+    allowClear: true,
+    //data: data
+} );
+</script>
+
 @endsection

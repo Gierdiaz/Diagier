@@ -18,13 +18,7 @@
                                     </div>
                                     <div class="team-content">
                                         <h4>Name: {{ $developer->name }}</h4>
-                                        <!--
-                                        <h5>Email: {{ $developer->email }}</h5>
-                                        <h5>Github: {{ $developer->github }} </h5>                                      </h5>
-                                        <h5>Technologies: {{ $developer->technologies }} </h5>
-                                        <h5>Level: {{ $developer->level }}</h5> -->
                                         <div>
-                                            <!-- href="{{ route('developers.show', $developer->id) }}" -->
                                             <?php $dev = json_encode($developer)?>
                                             <button onclick="abrirModal({{ json_encode($dev) }})"><i class="fa fa-user" style="font-size:130%;"></i></button>
                                             @can('update', $developer)
@@ -58,6 +52,7 @@
                         </div>
                         @endcan
                      </div>
+
 
                     <div class="modal" id="modal_employee" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
@@ -146,7 +141,7 @@
 <script>
     function abrirModal(developer) {
         developer2 = JSON.parse(developer);
-        var modal = document.getElementById("modal_employee");
+        var modal          = document.getElementById("modal_employee");
         var name           = document.getElementById("name");
         var email          = document.getElementById("email");
         var github         = document.getElementById("github");
@@ -176,7 +171,6 @@
         state.value = developer2.state;
         country.value = developer2.country;
         work_mode.value = developer2.work_mode;
-
         modal.style.display = "block";
     }
 
