@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto:wght@300&family=Rubik:wght@300&display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     @vite('resources/css/app.css')
 </head>
 
@@ -55,7 +57,7 @@
             </div>
 
             <img src="{{ asset('img/rocket-svgrepo-com.svg') }}" alt=""
-                class="absolute w-1/2 opacity-5 mx-auto 
+                class="absolute w-1/2 opacity-5 mx-auto
             top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-10">
         </div>
 

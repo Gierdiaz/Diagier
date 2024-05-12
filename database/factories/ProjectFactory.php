@@ -27,8 +27,8 @@ class ProjectFactory extends Factory
             'end_date'     => $this->faker->date,
             'budget'       => $this->faker->randomFloat(2, 1000, 100000),
             'status'       => $this->faker->randomElement(['progress', 'completed', 'suspended']),
-            'developer_id' => \App\Models\Developer::factory(),
-            'client_id'    => \App\Models\Client::factory(),
+            //'developer_id' => \App\Models\Developer::factory(),
+            //'client_id'    => \App\Models\Client::factory(),
             'created_at'   => now(),
             'updated_at'   => now(),
         ];

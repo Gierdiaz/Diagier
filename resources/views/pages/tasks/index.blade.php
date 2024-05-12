@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">     
+    <div class="col-md-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mt-5" style="color: #50bcb3;">
                 <li class="breadcrumb-item"><a href="/" style="color: #50bcb3;">Home</a></li>
@@ -14,7 +14,7 @@
         </nav>
         <h2 class="mt-5 mb-5" style="color: #50bcb3;">
             Tasks
-        </h2>              
+        </h2>
         <div class="card">
             <div class="card-header bg-blue" style="background-color: #50bcb3;">
                 <h4 class="mb-0 text-black">Tasks</h4>
@@ -53,12 +53,12 @@
                                         @can('update', $task)
                                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary btn-sm square-btn"><i class="material-icons">edit</i></a>
                                         @endcan
-                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
+                                        <form action="{{ route('tasks.destroy', ['task' => $task->id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             @can('delete', $task)
                                             <button type="submit" class="btn btn-danger btn-sm square-btn"><i class="material-icons">delete</i></button>
-                                            @endcan 
+                                            @endcan
                                         </form>
                                     </div>
                                 </td>

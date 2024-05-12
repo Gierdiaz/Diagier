@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 class Project extends Model
@@ -14,7 +14,6 @@ class Project extends Model
     use HasUuids;
 
     protected $fillable = [
-        'id',
         'name',
         'description',
         'client',
@@ -22,9 +21,7 @@ class Project extends Model
         'start_date',
         'end_date',
         'budget',
-        'status',
-        'developer_id',
-        'client_id',
+        'status'
     ];
 
     protected $casts = [
@@ -33,14 +30,20 @@ class Project extends Model
         'budget'     => 'decimal:2',
     ];
 
-    public function developer(): BelongsTo
+    public function developers()
     {
-        return $this->belongsTo(Developer::class);
+        return $this->belongsToMany(Developer::class);
     }
 
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
 
 }

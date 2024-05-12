@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DeveloperTableSeeder::class,
+            ClientTableSeeder::class,
             ProjectsTableSeeder::class,
             TasksTableSeeder::class,
             FeedbackTableSeeder::class,
             DocumentTableSeeder::class,
-            ClientTableSeeder::class,
+            ProjectsDevelopersTableSeeder::class
         ]);
     }
 }

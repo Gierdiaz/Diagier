@@ -28,4 +28,9 @@ class Developer extends Model
         'country',
         'work_mode',
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }

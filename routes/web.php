@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     DocumentController,
     FeedbackController,
     ProjectController,
-    TaskController
+    TaskController,
+    DashboardController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('developers', [DeveloperController::class, 'index'])->name('developers.index');
     Route::get('developers/create', [DeveloperController::class, 'create'])->name('developers.create');
     Route::get('developers/{developer}', [DeveloperController::class, 'show'])->name('developers.show');
-    Route::post('developers', [DeveloperController::class, 'store'])->name('developers.store');
+    Route::post('developers/store', [DeveloperController::class, 'store'])->name('developers.store');
     Route::get('developers/{developer}/edit', [DeveloperController::class, 'edit'])->name('developers.edit');
     Route::put('developers/{developer}', [DeveloperController::class, 'update'])->name('developers.update');
     Route::delete('developers/{developer}', [DeveloperController::class, 'destroy'])->name('developers.destroy');
@@ -96,5 +97,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
     Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
     Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'returnDashboard'])->name('dashboard.returndashboard');
 
 });
