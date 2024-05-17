@@ -20,7 +20,7 @@
             <!--<h2 class="mt-5 mb-5">Projects</h2>-->
             <div class="card">
                 <div class="card-header" style="background-color: #06b6d4; flex-direction:row;">
-                    <div style="float:left;"><h4 class="mb-0 text-black">Projects</h4></div>
+                    <div style="float:left; font-size:130%;" class="text-black">Projects</div>
                     <div style="background-color: #06b6d4; margin-left:90%; "><a href="{{ route('projects.create') }}" class="btn btn-secondary">Create Project</a></div>
                 </div>
 

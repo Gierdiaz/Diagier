@@ -1,15 +1,15 @@
 <header class='bg-cyan-500'>
     <div class="max-w-screen-custom-xl py-4 text-white flex justify-between mx-auto w-11/12">
-        <h1 class='text-5xl font-eczar font-semibold'><a href="{{ route('main') }}">Diagier</a></h1>
+        <h1 class="text-5xl font-eczar font-semibold"><a class="text-white hover:text-white focus:text-white active:text-white" href="{{ route('main') }}">Diagier</a></h1>
 
-        <nav class="items-center justify-end space-x-1 text-xl font-semibold hidden md:flex lg:space-x-2"
+        <nav class="items-center justify-end space-x-1 text-xl font-semibold hidden md:flex lg:space-x-2 "
             id="headerContent">
             @auth
-                <a href="{{ route('developers.index') }}">Desenvolvedores</a>
-                <a href="{{ route('projects.index') }}">Projetos</a>
-                <a href="{{ route('tasks.index') }}">Tarefas</a>
-                <a href="{{ route('feedbacks.index') }}">Feedbacks</a>
-               <!-- <a href="{{ route('logout') }}">Logout</a> -->
+                <a class="text-white hover:text-white focus:text-white active:text-white" href="{{ route('developers.index') }}">Desenvolvedores</a>
+                <a class=" text-white hover:text-white focus:text-white active:text-white" href="{{ route('projects.index') }}">Projetos</a>
+                <a class="text-white hover:text-white focus:text-white active:text-white" href="{{ route('tasks.index') }}">Tarefas</a>
+                <a class=" text-white hover:text-white focus:text-white active:text-white" href="{{ route('feedbacks.index') }}">Feedbacks</a>
+                <!-- <a href="{{ route('logout') }}">Logout</a> -->
 
                 <!----------------------- DROPDOWN MENU -------------------------->
                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="items-center justify-end space-x-1 text-xl font-semibold text-white bg-blue-450 hover:bg-blue-460 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center dark:bg-blue-450 dark:hover:bg-blue-450 dark:focus:ring-blue-450" type="button">  {{ Auth::user()->name }} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
