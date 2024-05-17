@@ -8,16 +8,14 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\View\View;
-use App\Models\ProjectsEmployees;
+use App\Models\DeveloperProject;
 
 class ProjectController extends Controller
 {
     public function index(): View
     {
         try {
-            $projects = Project::join('developers','projects.developer_id','=','developers.id')
-            ->join('clients','projects.client_id','=','clients.id')
-            ->select('projects.*','clients.name as client')
+            $projects = Project::select('projects.*')
             ->orderBy('id', 'desc')
             ->paginate(5);
 
@@ -54,29 +52,30 @@ class ProjectController extends Controller
 
         try {
             $validated = $request->validated();
+            $data = ['name' => $validated['name'],
+                     'description' => $validated['description'],
+                     'client' => $validated['client'],
+                     'technologies' => $validated['technologies'],
+                     'start_date' => $validated['start_date'],
+                     'end_date' => $validated['end_date'],
+                     'budget' => $validated['budget'],
+                     'status' => $validated['status']];
 
-            //dd($validated);
+            $project = new Project();
+            $project->fill($data);
+            $project->save();
 
-            $project   = Project::create(['name' => $validated["name"],
-                                          'description' => $validated["description"],
-                                          'client' => $validated["client"],
-                                          'technologies' => $validated["technologies"],
-                                          'start_date' => $validated["start_date"],
-                                          'end_date' => $validated["end_date"],
-                                          'budget' => $validated["budget"],
-                                          'status' => $validated["status"]]);
-            
             for($i = 0; $i < count($validated["developer_id"]); $i++){
-                ProjectsEmployees::create([$project['id'],
-                                           $validated["developer_id"][$i]]);
+                $developer_project = new DeveloperProject();
+                $developer_project->project_id   = $project['id'];
+                $developer_project->developer_id = $validated["developer_id"][$i];
+                $developer_project->save();
             }
-
             DB::commit();
 
             return redirect()->route('projects.index')->with('success', 'Project created successfully!');
         } catch (QueryException $exception) {
             DB::rollBack();
-            dd($exception);
             return back()->withError('An error occurred while storing project.');
         }
     }
@@ -85,9 +84,11 @@ class ProjectController extends Controller
     {
         try {
             $developers = Developer::all();
+            $projectDevelopers = DeveloperProject::listProjectDevelopers($project->id)->pluck('developer_id')->toArray();
 
-            return view('pages.projects.edit', compact('project', 'developers'));
+            return view('pages.projects.edit', compact('project','projectDevelopers', 'developers'));
         } catch (\Exception $e) {
+            dd($e);
             return back()->withError('An error occurred while editing project.');
         }
     }
@@ -97,7 +98,31 @@ class ProjectController extends Controller
         DB::beginTransaction();
 
         try {
-            $project->update($request->validated());
+            $project->where('id', $project->id)->delete();
+
+            $validated = $request->validated();
+            $data = ['name'         => $validated['name'],
+                     'description'  => $validated['description'],
+                     'client'       => $validated['client'],
+                     'technologies' => $validated['technologies'],
+                     'start_date'   => $validated['start_date'],
+                     'end_date'     => $validated['end_date'],
+                     'budget'       => $validated['budget'],
+                     'status'       => $validated['status']];
+
+            $project = new Project();
+            $project->fill($data);
+            $project->save();
+
+            DeveloperProject::delete_developers($project->id);
+
+            for($i = 0; $i < count($validated["developer_id"]); $i++){
+                $developer_project               = new DeveloperProject();
+                $developer_project->project_id   = $project['id'];
+                $developer_project->developer_id = $validated["developer_id"][$i];
+                $developer_project->save();
+            }
+
             DB::commit();
 
             return redirect()->route('projects.index')->with('success', 'Project updated successfully!');

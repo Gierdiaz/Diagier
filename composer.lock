@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "702067aa7fd849134ca37b948a501d2a",
+    "content-hash": "b15e35e8515cddb63e2f7612dc5dc670",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6191,6 +6191,64 @@
             "time": "2022-06-03T18:03:27+00:00"
         },
         {
+            "name": "webpatser/laravel-uuid",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webpatser/laravel-uuid.git",
+                "reference": "f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webpatser/laravel-uuid/zipball/f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea",
+                "reference": "f82715c6bc6a4fcc61bb020cb4fddeb8cc73bbea",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0|^8.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.9.1",
+                "phpunit/phpunit": "^9.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Webpatser\\Uuid\\UuidServiceProvider"
+                    ],
+                    "aliases": {
+                        "Uuid": "Webpatser\\Uuid\\Uuid"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webpatser\\Uuid\\": "src/Webpatser/Uuid/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kempen",
+                    "email": "christoph@downsized.nl"
+                }
+            ],
+            "description": "Laravel package to generate and to validate a universally unique identifier (UUID) according to the RFC 4122 standard. Support for version 1, 3, 4 and 5 UUIDs are built-in.",
+            "homepage": "https://github.com/webpatser/laravel-uuid",
+            "keywords": [
+                "UUID RFC4122"
+            ],
+            "support": {
+                "issues": "https://github.com/webpatser/laravel-uuid/issues",
+                "source": "https://github.com/webpatser/laravel-uuid"
+            },
+            "time": "2023-05-19T08:56:59+00:00"
+        },
+        {
             "name": "wireui/wireui",
             "version": "v1.19.0",
             "source": {
@@ -8961,5 +9019,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

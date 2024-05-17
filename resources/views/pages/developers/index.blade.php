@@ -1,9 +1,9 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="container">
-<br>
+<div class="container" >
     <div class="row">
+        <span style="float:left; font-size:130%;" class="text-black">Developers/Employees</span>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -32,7 +32,6 @@
                                                 </form>
                                             @endcan
                                         </div>
-
                                     </div>
                                     </div>
                                 </div>
@@ -40,9 +39,8 @@
                            </div>
                         </div>
                      </div>
-
-                     <div style="display:flex; flex-direction:row;" class="justify-content-center">
-                        <div  class="d-flex justify-content-center" style="display:inline-block;">
+                     <div style="margin-top:0; display:flex; flex-direction:row;" class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center" style="display:inline-block;">
                             {{ $developers->links() }}
                         </div>
                         &nbsp;&nbsp;
